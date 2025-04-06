@@ -7,40 +7,41 @@ public class Product{
     private int sizeValue;
 
     Product(String name, int price, int sizeValue){
+        CompanyData.add(this);
         setName(name);
         setPrice(price);
         setSizeValue(sizeValue);
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public int getPrice() {
+    int getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    void setPrice(int price) {
         this.price = price;
     }
 
-    public int getSizeValue() {
+    int getSizeValue() {
         return sizeValue;
     }
 
-    public void setSizeValue(int sizeValue) {
+    void setSizeValue(int sizeValue) {
         this.sizeValue = sizeValue;
     }
 
-    public int getCount() {
+    int getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    void setCount(int count) {
         this.count = count;
     }
 
