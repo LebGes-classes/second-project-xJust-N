@@ -3,7 +3,7 @@ package src;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Customer extends Profile {
+public class Customer extends Profile implements Printable {
     private List<Order> orders;
     private int numberOfOrders;
 
@@ -25,6 +25,17 @@ public class Customer extends Profile {
     public void incNumberOfOrders() {
         numberOfOrders++;
     }
+
+    @Override
+    public void printInfo(){
+        super.printInfo();
+        System.out.println(
+                "Всего заказов: " + numberOfOrders + "\n" +
+                        "Заказы: "
+        );
+        UI.printAllInfo(orders);
+    }
+
 
 
 

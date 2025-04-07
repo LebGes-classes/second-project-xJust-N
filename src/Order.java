@@ -1,14 +1,15 @@
 package src;
 
 import java.util.HashMap;
+import java.util.Map;
 
-public class Order {
+public class Order implements Printable {
 
     private final String name;
     private final Customer recipient;
     private int price;
     private Status status;
-    private HashMap<String, Product> listOfProducts;
+    private Map<String, Product> listOfProducts;
     private SalingPoint deliveryPoint;
 
 
@@ -59,6 +60,18 @@ public class Order {
         this.status = status;
     }
 
+    @Override
+    public void printInfo(){
+        System.out.println(
+                "Название: " + name + "\n" +
+                        "Сумма оплаты: " + price + "\n" +
+                        "Получатель: " + recipient.getName() + "\n" +
+                        "Статус: " + status + "\n" +
+                        "Пункт доставки: " + deliveryPoint.getName()
+        );
 
+        System.out.println("Товары: ");
+        UI.printAllInfo(listOfProducts.values());
+    }
 
 }

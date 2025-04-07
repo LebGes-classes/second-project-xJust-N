@@ -1,6 +1,6 @@
 package src;
 
-public class Employee extends Profile {
+public class Employee extends Profile implements Printable {
     private String positionOnWork;
     private int yearsOnWork;
 
@@ -24,6 +24,15 @@ public class Employee extends Profile {
 
     public void setYearsOnWork(int yearsOnWork) {
         this.yearsOnWork = yearsOnWork;
+    }
+
+    @Override
+    public void printInfo(){
+        super.printInfo();
+        System.out.println(
+                "Должность: " + positionOnWork + "\n" +
+                        "Опыт работы: " + yearsOnWork
+        );
     }
 
 

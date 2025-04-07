@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-class Storage {
+class Storage implements Printable{
     private final List<StorageCell> storageCells;
     private final HashMap<String, Employee> employees;
     private int size;
@@ -70,6 +70,23 @@ class Storage {
 
     public List<StorageCell> getStorageCells() {
         return storageCells;
+    }
+
+
+    @Override
+    public void printInfo(){
+        System.out.println(
+                "Название: " + name + "\n" +
+                        "Заполненность: " + size + "/" + capacity + "\n" +
+                        "Ответственные лица: "
+        );
+        UI.printAllInfo(employees.values());
+
+        System.out.println("Товары: ");
+        for(StorageCell cell: storageCells){
+            UI.printAllInfo(cell.getProducts());
+        }
+
     }
 
 

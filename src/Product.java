@@ -1,6 +1,6 @@
 package src;
 
-public class Product{
+public class Product implements Printable{
     private String name;
     private int count;
     private int price;
@@ -43,6 +43,17 @@ public class Product{
 
     void setCount(int count) {
         this.count = count;
+    }
+
+    @Override
+    public void printInfo(){
+        System.out.println(
+                "Название: " + name + "\n" +
+                        "Цена: " + price + "\n" +
+                        "Количество: " + count + "\n" +
+                        "Размер: " + sizeValue
+
+        );
     }
 
 }

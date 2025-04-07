@@ -1,72 +1,21 @@
 package src;
 
+import java.util.Collection;
+import java.util.Map;
+
 public class UI {
 
-    public static void printInfo(Order obj){
-        System.out.println(
-                "Название: " + obj.getName() + "\n" +
-                        "Сумма оплаты: " + obj.getPrice() + "\n" +
-                        "Получатель: " + obj.getRecipient().getName() + "\n" +
-                        "Статус: " + obj.getStatus() + "\n" +
-                        "Пункт доставки: " + obj.getDeliveryPoint().getName()
-        );
-
-        System.out.println("Товары: ");
-        printAllInfo(order.getListOfProducts());
-    }
-    public static void printInfo(Storage obj){
-        System.out.println(
-                "Название: " + obj.getName() + "\n" +
-                        "Заполненность: " + obj.getSize() + "/" + obj.getCapacity() + "\n" +
-                        "Ответственные лица: "
-        );
-        printAllInfo(obj.getEmployees());
-
-        System.out.println("Товары: ");
-        for(StorageCell cell: obj.getStorageCells()){
-            printAllInfo(cell.getProducts());
+    public static void printAllInfo(Collection< ? extends Printable> c){
+        for(Printable element : c){
+            element.printInfo();
         }
-
-    }
-    public static void printInfo(Product obj){
-        System.out.println(
-                "Название: " + obj.getName() + "\n" +
-                        "Цена: " + obj.getPrice() + "\n" +
-                        "Количество: " + obj.getCount() + "\n" +
-                        "Размер: " + obj.getSizeValue() + "\n" +
-
-        );
-    }
-    public static void printProfileInfo(Profile obj){
-        System.out.println(
-                "Имя: " + obj.getName() + "\n" +
-                        "Возраст: " + obj.getAge() + "\n" +
-                        "Пол: " + String
-    if(obj.getSex()) {
-
-        }
-                        "Размер: " + obj.getSizeValue() + "\n" +
-
-        );
-    }
-    public static void printInfo(Employee obj){
-        System.out.println(
-                "Имя: " + obj.getName() + "\n" +
-                        "Цена: " + obj.getPrice() + "\n" +
-                        "Количество: " + obj.getCount() + "\n" +
-                        "Размер: " + obj.getSizeValue() + "\n" +
-
-        );
     }
 
-
-
-}
     public static void printMainMenu(){
         clearConsole();
         System.out.println(
                 """
-                        \t---Добро пожаловать!---\t
+                        \t---Добро пожаловать!---\t 
                         
                         \tВыберете раздел:\t
                         1) Заказы

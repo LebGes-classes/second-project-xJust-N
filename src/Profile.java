@@ -1,6 +1,6 @@
 package src;
 
-public class Profile {
+public class Profile implements Printable {
     private String name;
     private int age;
     private boolean sex;
@@ -33,6 +33,15 @@ public class Profile {
 
     public void setSex(boolean sex) {
         this.sex = sex;
+    }
+
+    @Override
+    public void printInfo(){
+        System.out.println(
+                "Имя: " + name + "\n" +
+                        "Возраст: " + age + "\n" +
+                        "Пол: " + (sex ? "М" : "Ж")
+        );
     }
 
 

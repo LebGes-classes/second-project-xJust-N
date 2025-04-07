@@ -1,5 +1,6 @@
 package src;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 class StorageCell {
@@ -40,4 +41,5 @@ class StorageCell {
     public int getCapacity() {
         return capacity;
     }
+
 }
