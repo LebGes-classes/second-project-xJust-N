@@ -5,15 +5,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static src.CompanyData.*
-
 class Storage {
-    private List<StorageCell> storageCells;
-    private Map<String, Employee> employees;
+    private final List<StorageCell> storageCells;
+    private final HashMap<String, Employee> employees;
     private int size;
     private final int capacity;
     private String name;
-
+    private static HashMap<String, SalingPoint> salingPoints;
 
     Storage(String name, int capacity){
        CompanyData.add(this);
@@ -26,8 +24,9 @@ class Storage {
     Storage(String name){
         this(name, 4);
     }
+
     public static Storage openNewStorage(String name) throws IOException {
-        if(!storages.containsKey(name)) {
+        if(!CompanyData.getStorages().containsKey(name)) {
             return new Storage(name);
         }
         else{
@@ -37,16 +36,17 @@ class Storage {
 
 
     public static void closeStorage(String name) throws IOException{
-        if(storages.containsKey(name)) {
-            storages.remove(name);
-        }
-        else{
-            throw new IOException("Такого склада нет");
-        }
+        CompanyData.removeStorage(name);
     }
-    public void findValidCell(int neededSize){
+    private StorageCell findValidCell(int neededSize){
+        return null;
+    }
 
+    public void add(Product product, int count){
+        StorageCell cell = findValidCell(product.getSizeValue() * count);
+        cell.add(product, count);
     }
+
 
     public String getName() {
         return name;
@@ -64,7 +64,7 @@ class Storage {
         return size;
     }
 
-    public Map<String, Employee> getEmployees() {
+    public HashMap<String, Employee> getEmployees() {
         return employees;
     }
 
