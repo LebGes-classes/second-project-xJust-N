@@ -7,8 +7,16 @@ public class Product implements Printable{
     private int sizeValue;
 
     Product(String name, int price, int sizeValue){
-        CompanyData.add(this);
+        this(
+                name,
+                0,
+                price,
+                sizeValue
+        );
+    }
+    Product(String name, int count, int price, int sizeValue){
         setName(name);
+        setCount(count);
         setPrice(price);
         setSizeValue(sizeValue);
     }
@@ -43,6 +51,10 @@ public class Product implements Printable{
 
     void setCount(int count) {
         this.count = count;
+    }
+
+    Product copyAndSetCount(int count){
+        return new Product(name, count, price, sizeValue);
     }
 
     @Override

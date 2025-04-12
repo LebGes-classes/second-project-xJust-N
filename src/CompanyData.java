@@ -1,14 +1,14 @@
 package src;
 
-import java.util.HashMap;
+import java.util.Map;
 
 class CompanyData {
-    private static HashMap<String, Order> orders;
-    private static HashMap<String, Storage> storages;
-    private static HashMap<String, SalingPoint> salingPoints;
-    private static HashMap<String, Product> products;
-    private static HashMap<String, Employee> employees;
-    private static HashMap<String, Customer> customers;
+    private static Map<String, Order> orders;
+    private static Map<String, Storage> storages;
+    private static Map<String, SalingPoint> salingPoints;
+    private static Map<String, Product> products;
+    private static Map<String, Employee> employees;
+    private static Map<String, Customer> customers;
 
 
 
@@ -31,26 +31,26 @@ class CompanyData {
         customers.put(c.getName(), c);
     }
 
-    public static HashMap<String, Order> getOrders() {
+    public static Map<String, Order> getOrders() {
         return orders;
     }
-    public static HashMap<String, Storage> getStorages() {
+    public static Map<String, Storage> getStorages() {
         return storages;
     }
 
-    public static HashMap<String,SalingPoint> getSalingPoints() {
+    public static Map<String,SalingPoint> getSalingPoints() {
         return salingPoints;
     }
 
-    public static HashMap<String, Product> getProducts() {
+    public static Map<String, Product> getProducts() {
         return products;
     }
 
-    public static HashMap<String,Employee> getEmployees() {
+    public static Map<String,Employee> getEmployees() {
         return employees;
     }
 
-    public static HashMap<String,Customer> getCustomers() {
+    public static Map<String,Customer> getCustomers() {
         return customers;
     }
 

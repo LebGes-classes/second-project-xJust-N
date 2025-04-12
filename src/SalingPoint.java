@@ -1,20 +1,20 @@
 package src;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class SalingPoint {
 
     private String name;
-    private HashMap<String, Order> orders;
+    private Map<String, Order> orders;
 
     SalingPoint(String name){
-        CompanyData.add(this);
         setName(name);
         orders = new HashMap<String, Order>();
     }
 
 
-    public HashMap<String,Order> getOrders() {
+    public Map<String,Order> getOrders() {
         return orders;
     }
     public String getName() {

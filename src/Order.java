@@ -1,36 +1,53 @@
 package src;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class Order implements Printable {
 
     private final String name;
     private final Customer recipient;
-    private int price;
+    private final List<Product> listOfProducts;
+    private int price = 0;
+    private final SalingPoint deliveryPoint;
     private Status status;
-    private Map<String, Product> listOfProducts;
-    private SalingPoint deliveryPoint;
 
 
 
-    public Order(String name, Customer recipient, int price, HashMap<String, Product> listOfProducts) {
+
+    public Order(String name, Customer recipient, List<Product> listOfProducts, SalingPoint deliveryPoint) {
         CompanyData.add(this);
         this.name = name;
         this.recipient = recipient;
-        this.price = price;
         this.listOfProducts = listOfProducts;
+        price = getPriceOfProducts(listOfProducts);
         this.status = Status.ON_STORAGE;
+        this.deliveryPoint = deliveryPoint;
     }
-    public Order(Customer recipient, int price, HashMap<String, Product> listOfProducts) {
+    public Order(Customer recipient, SalingPoint deliveryPoint) {
         this(
                generateOrderName(recipient),
                 recipient,
-                price,
-                listOfProducts
+                new LinkedList<>(),
+                deliveryPoint
+        );
+    }
+    public Order(Customer recipient, List<Product> listOfProducts, SalingPoint deliveryPoint) {
+        this(
+                generateOrderName(recipient),
+                recipient,
+                listOfProducts,
+                deliveryPoint
         );
     }
 
+
+    public void add(Product product, int count){
+        listOfProducts.add(product);
+        price += product.getPrice() * count;
+    }
 
     private static String generateOrderName(Customer recipient){
         return recipient.getName() + "'s order № " + (recipient.getNumberOfOrders() + 1);
@@ -47,7 +64,7 @@ public class Order implements Printable {
         return price;
     }
 
-    public HashMap<String, Product> getListOfProducts() {
+    public List<Product> getListOfProducts() {
         return listOfProducts;
     }
 
@@ -58,6 +75,14 @@ public class Order implements Printable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    private static int getPriceOfProducts(List<Product> listOfProducts){
+        int sum = 0;
+        for(Product product : listOfProducts){
+            sum += product.getPrice() * product.getCount();
+        }
+        return sum;
     }
 
     @Override
@@ -71,7 +96,7 @@ public class Order implements Printable {
         );
 
         System.out.println("Товары: ");
-        UI.printAllInfo(listOfProducts.values());
+        UI.printAllInfo(listOfProducts);
     }
 
 }

@@ -1,10 +1,9 @@
 package src;
 
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.Map;
 
 class StorageCell {
-    private HashMap<String,Product> products;
+    private Map<String,Product> products;
     private int size;
     private final int capacity;
     StorageCell(int capacity){
@@ -30,7 +29,7 @@ class StorageCell {
             throw new RuntimeException("Не хватает места");
         }
     }
-    public void remove(Product products){
+    public void remove(Product product){
 
     }
 

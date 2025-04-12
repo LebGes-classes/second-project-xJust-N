@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 class Storage implements Printable{
     private final List<StorageCell> storageCells;
@@ -11,10 +12,9 @@ class Storage implements Printable{
     private int size;
     private final int capacity;
     private String name;
-    private static HashMap<String, SalingPoint> salingPoints;
+    private static Map<String, SalingPoint> salingPoints;
 
     Storage(String name, int capacity){
-       CompanyData.add(this);
         storageCells = new ArrayList<>(capacity);
         employees = new HashMap<>();
         size = 0;

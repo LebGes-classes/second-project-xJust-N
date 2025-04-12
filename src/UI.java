@@ -24,6 +24,7 @@ public class UI {
                         4) Товары
                         5) Ответственные лица
                         6) Покупатели
+                        0) Выход
                         
                         """
                 );
@@ -38,7 +39,7 @@ public class UI {
                         2) Оформление
                         3) Смена статуса заказа
                         4) Возврат
-           
+                 
                         
                         """
         );
@@ -102,6 +103,32 @@ public class UI {
                         """
         );
     }
+    public static void printActionEmployeeMenu(){
+        clearConsole();
+        System.out.println(
+                """
+                        \t---Выберете действие---\t
+                        
+                        1) Показать информацию
+                        2) Нанять сотрудника
+                        3) Уволить сотрудника
+                     
+                        """
+        );
+    }
+    public static void printActionCustomerMenu(){
+        clearConsole();
+        System.out.println(
+                """
+                        \t---Выберете действие---\t
+                        
+                        1) Показать информацию
+                        2) Создать аккаунт покупателя
+                        3) Удалить аккаунт покупателя
+                     
+                        """
+        );
+    }
 
 
 
@@ -127,7 +154,15 @@ public class UI {
     }
     public static void printEnterNameMenu(){
         clearConsole();
-        System.out.println(" Введите имя:");
+        System.out.println("Введите имя:");
+    }
+    public static void printEnterNameMenu(String name){
+        clearConsole();
+        System.out.println("Введите имя " + name + ": ");
+    }
+    public static void printErrorMenu(String message){
+        System.out.println(message + "\n");
+        System.out.println("1) Вернуться назад");
     }
 
 }
