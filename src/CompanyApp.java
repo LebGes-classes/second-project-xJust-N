@@ -27,68 +27,17 @@ public class CompanyApp {
         }
     }
 
-    private static void ordersMenu() {
-        printActionOrdersMenu();
-        String in = scanner.nextLine();
-        switch(in){
-            case("1"): infoMenu(CompanyData.getOrders()); break;
-            case("2"):
-                printEnterNameMenu("получателя");
-                Customer recipient = getObjectByName(CompanyData.getCustomers());
-                printEnterNameMenu("пункта выдачи");
-                SalingPoint sp = getObjectByName(CompanyData.getSalingPoints());
-                printEnterNameMenu("товара и его количество(введите 0 для конца)");
-                List<Product> listOfProducts = getListOfProductsByName();
-
-                Order order = new Order(recipient, listOfProducts, sp);
-                CompanyData.add(order);
-                order.printInfo();
-
-                enterButtonToGetBack();
-                break;
-
-            case("3"):
-                printEnterNameMenu("заказа");
-                Order ord = getObjectByName(CompanyData.getOrders());
-                printActionOrderStatusMenu();
-                String status = scanner.nextLine();
-                switch(status){
-                    case("1"): ord.setStatus(Status.ON_STORAGE); break;
-                    case("2"): ord.setStatus(Status.ON_DELIVERY); break;
-                    case("3"): ord.setStatus(Status.AT_SALES_POINT); break;
-                    default:
-                }
-
-                enterButtonToGetBack();
-                break;
-
-            case("4"):
-                printEnterNameMenu("заказа");
-                Order or = getObjectByName(CompanyData.getOrders());
-                printEnterNameMenu("склада");
-                Storage storage = getObjectByName(CompanyData.getStorages());
-                storage.add(or.getListOfProducts());
-                CompanyData.removeOrder(or.getName());
-
-                enterButtonToGetBack();
-                break;
-
-            default: ordersMenu();
-        }
-    }
-
-
     private static void storagesMenu() {
         printActionStorageMenu();
         String in = scanner.nextLine();
         switch(in){
             case("1"): infoMenu(CompanyData.getStorages()); break;
-            case("2"): storagesMenu(); break;
-            case("3"): salingPointsMenu(); break;
-            case("4"): productsMenu(); break;
+            case("2"): moveMenu(); break;
+            case("3"): newObjectMenu(); break;
+            case("4"): deleteObjectMenu(); break;
             case("5"): employeesMenu(); break;
             case("6"): customersMenu(); break;
-            default:
+            default: storagesMenu(); break;
         }
     }
     private static void infoMenu(Map<String, ? extends Printable> map){

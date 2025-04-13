@@ -1,11 +1,14 @@
 package src;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 class StorageCell {
     private Map<String,Product> products;
     private int size;
     private final int capacity;
+
     StorageCell(int capacity){
         size = 0;
         this.capacity = capacity;
@@ -13,8 +16,11 @@ class StorageCell {
     StorageCell(){
         this(1000);
     }
-    public void add(Product product, int count){
+
+    public void add(Product product){
+        int count = product.getCount();
         String name = product.getName();
+
         if(size + product.getSizeValue() * count <= capacity) {
             if(!products.containsKey(name)){ //не содержит такой продукт
                 products.put(name, product);
@@ -29,8 +35,14 @@ class StorageCell {
             throw new RuntimeException("Не хватает места");
         }
     }
-    public void remove(Product product){
 
+    public void remove(Product product, int count){
+        if(product.getCount() <= count){
+            products.remove(product.getName());
+        }
+        else{
+            products.get(product.getName());
+        }
     }
 
     public int getSize() {
@@ -39,6 +51,10 @@ class StorageCell {
 
     public int getCapacity() {
         return capacity;
+    }
+    
+    public Collection<Product> getProducts(){
+        return products.values();
     }
 
 }

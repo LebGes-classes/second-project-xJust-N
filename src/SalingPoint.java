@@ -6,16 +6,16 @@ import java.util.Map;
 public class SalingPoint {
 
     private String name;
-    private Map<String, Order> orders;
+    private final Map<String, Product> products;
 
     SalingPoint(String name){
         setName(name);
-        orders = new HashMap<String, Order>();
+        products = new HashMap<String, Product>();
     }
 
 
-    public Map<String,Order> getOrders() {
-        return orders;
+    public Map<String,Product> getProducts() {
+        return products;
     }
     public String getName() {
         return name;

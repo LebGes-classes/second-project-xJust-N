@@ -25,27 +25,31 @@ class Storage implements Printable{
         this(name, 4);
     }
 
-    public static Storage openNewStorage(String name) throws IOException {
-        if(!CompanyData.getStorages().containsKey(name)) {
-            return new Storage(name);
-        }
-        else{
-           throw new IOException("Склад с таким именем уже существует");
-        }
-    }
-
-
-    public static void closeStorage(String name) throws IOException{
-        CompanyData.removeStorage(name);
-    }
     private StorageCell findValidCell(int neededSize){
-        return null;
+        for(StorageCell cell: storageCells){
+            if(neededSize <= cell.getSize()){
+                return cell;
+            }
+        }
+        throw new RuntimeException("Не хватает места на складе");
     }
 
-    public void add(Product product, int count){
-        StorageCell cell = findValidCell(product.getSizeValue() * count);
+    public void add(Product product){
+        int count = product.getCount();
+        int size = product.getSizeValue() * count;
+
+        StorageCell cell = findValidCell(size);
         cell.add(product, count);
+        this.size += size;
+
     }
+
+    public void add(List<Product> products){
+        for(Product product : products){
+            add(product);
+        }
+    }
+
 
 
     public String getName() {
