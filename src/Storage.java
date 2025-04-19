@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class Storage implements Printable{
+public class Storage implements Printable{
     private final List<StorageCell> storageCells;
     private final HashMap<String, Employee> employees;
     private int size;
@@ -22,7 +22,7 @@ class Storage implements Printable{
     }
 
     Storage(String name){
-        this(name, 4);
+        this(name, 10);
     }
 
     private StorageCell findValidCell(int neededSize){
@@ -34,7 +34,7 @@ class Storage implements Printable{
         throw new RuntimeException("Не хватает места на складе");
     }
 
-    public void add(Product product){
+    public void add(Product product) throws IOException {
         int count = product.getCount();
         int size = product.getSizeValue() * count;
 
@@ -44,14 +44,45 @@ class Storage implements Printable{
 
     }
 
-    public void add(List<Product> products){
+    public void add(List<Product> products) throws IOException{
         for(Product product : products){
             add(product);
         }
     }
+    public void move(Storage storage, List<Product> listOfProducts) throws IOException{
+        for(Product product : listOfProducts){
+            remove(product, product.getCount());
+            storage.add(product);
+        }
+
+    }
+
+    public StorageCell findCellContainsProduct(Product product) throws IOException {
+        int count = product.getCount();
+        String name = product.getName();
+        for(StorageCell cell : storageCells){
+            if(cell.getProducts().containsKey(name) && cell.getProducts().get(name).getCount() >= count){
+                return cell;
+            }
+        }
+        throw new IOException("Склад не содержит продукт в нужном количестве");
+    }
 
 
+    public void remove(Product product, int count)throws IOException{
+        StorageCell cell = findCellContainsProduct(product);
+        cell.remove(product, count);
+    }
 
+    public Map<String, Product> getAllProducts() {
+        Map<String, Product> mapOfProducts = new HashMap<>();
+        for (StorageCell cell : storageCells) {
+            for (Product product : cell.getProducts().values()) {
+                mapOfProducts.put(product.getName(), product);
+            }
+        }
+        return mapOfProducts;
+    }
     public String getName() {
         return name;
     }
@@ -88,7 +119,7 @@ class Storage implements Printable{
 
         System.out.println("Товары: ");
         for(StorageCell cell: storageCells){
-            UI.printAllInfo(cell.getProducts());
+            UI.printAllInfo(cell.getProducts().values());
         }
 
     }

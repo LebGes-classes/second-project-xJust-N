@@ -1,5 +1,6 @@
 package src;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +18,7 @@ class StorageCell {
         this(1000);
     }
 
-    public void add(Product product){
-        int count = product.getCount();
+    public void add(Product product, int count) throws IOException{
         String name = product.getName();
 
         if(size + product.getSizeValue() * count <= capacity) {
@@ -32,16 +32,21 @@ class StorageCell {
             size += product.getSizeValue() * count;
         }
         else{
-            throw new RuntimeException("Не хватает места");
+            throw new IOException("Не хватает места");
         }
     }
 
-    public void remove(Product product, int count){
-        if(product.getCount() <= count){
-            products.remove(product.getName());
+    public void remove(Product pr, int count) throws IOException{
+        String name = pr.getName();
+        Product cellProduct = products.get(name);
+        if(cellProduct.getCount() == count){
+            products.remove(name);
+        }
+        else if(cellProduct.getCount() >= count){
+            cellProduct.addCount(- count);
         }
         else{
-            products.get(product.getName());
+            throw new IOException("Такого количества продукта на складе нет");
         }
     }
 
@@ -53,8 +58,8 @@ class StorageCell {
         return capacity;
     }
     
-    public Collection<Product> getProducts(){
-        return products.values();
+    public Map<String, Product> getProducts(){
+        return products;
     }
 
 }

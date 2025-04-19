@@ -47,6 +47,7 @@ public class UI {
                         """
         );
     }
+
     public static void printActionSalingPointMenu(){
         clearConsole();
         System.out.println(

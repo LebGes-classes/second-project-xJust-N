@@ -2,7 +2,7 @@ package src;
 
 import java.util.Map;
 
-class CompanyData {
+public class CompanyData {
 
     private static Map<String, Storage> storages;
     private static Map<String, SalingPoint> salingPoints;

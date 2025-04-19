@@ -52,6 +52,7 @@ public class Product implements Printable{
     void setCount(int count) {
         this.count = count;
     }
+    void addCount(int count){this.count += count;}
 
     Product copyAndSetCount(int count){
         return new Product(name, count, price, sizeValue);

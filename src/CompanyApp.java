@@ -17,12 +17,11 @@ public class CompanyApp {
         printMainMenu();
         String in = scanner.nextLine();
         switch(in){
-            case("1"): ordersMenu(); break;
-            case("2"): storagesMenu(); break;
-            case("3"): salingPointsMenu(); break;
-            case("4"): productsMenu(); break;
-            case("5"): employeesMenu(); break;
-            case("6"): customersMenu(); break;
+            case("1"): storagesMenu(); break;
+            case("2"): salingPointsMenu(); break;
+            case("3"): productsMenu(); break;
+            case("4"): employeesMenu(); break;
+            case("5"): customersMenu(); break;
             default: start();
         }
     }
@@ -30,28 +29,8 @@ public class CompanyApp {
     private static void storagesMenu() {
         printActionStorageMenu();
         String in = scanner.nextLine();
-        switch(in){
-            case("1"): infoMenu(CompanyData.getStorages()); break;
-            case("2"): moveMenu(); break;
-            case("3"): newObjectMenu(); break;
-            case("4"): deleteObjectMenu(); break;
-            case("5"): employeesMenu(); break;
-            case("6"): customersMenu(); break;
-            default: storagesMenu(); break;
-        }
     }
-    private static void infoMenu(Map<String, ? extends Printable> map){
-        printAllOrOneMenu();
-        String in = scanner.nextLine();
-        switch(in){
-            case("1"): printAllInfo(map.values()); break;
-            case("2"):
-                printEnterNameMenu();
-                in = scanner.nextLine();
-                map.get(in).printInfo();
-                break;
-        }
-    }
+
     private static <T> T getObjectByName(Map<String, T> map) {
         String name = scanner.nextLine();
         while (!map.containsKey(name)) {
