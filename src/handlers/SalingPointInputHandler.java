@@ -5,11 +5,12 @@ import src.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 
 class SalingPointInputHandler extends InputHandler{
     private final Map<String, SalingPoint> salingPoints;
-    private final Map<Customer> customers;
+    private final Map<String, Customer> customers;
     private final Map<String, Employee> employees;
 
     SalingPointInputHandler(){
@@ -37,7 +38,7 @@ class SalingPointInputHandler extends InputHandler{
     }
 
     @Override
-    public void handle(String command) {
+    public void handle(String command){
         switch(command){
             case("1"): infoMenu(salingPoints); break;
             case("2"): sellToCustomerMenu(); break;
@@ -53,7 +54,15 @@ class SalingPointInputHandler extends InputHandler{
 
     private void sellToCustomerMenu(){
         clearConsole();
+        System.out.println("Введите название пункта продаж");
+        SalingPoint sp = salingPoints.get(scanner.nextLine());
         System.out.println("Введите имя покупателя");
+        Customer customer = customers.get(scanner.nextLine());
+        System.out.println("Введите название продукта и количество");
+
+
+    }
+    private void returnProductsToStorage(){
 
     }
     private void newStorageMenu(){
