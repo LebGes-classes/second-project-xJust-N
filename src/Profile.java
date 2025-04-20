@@ -38,7 +38,7 @@ public class Profile implements Printable {
     @Override
     public void printInfo(){
         System.out.println(
-                "Имя: " + name + "\n" +
+                        "Имя: " + name + "\n" +
                         "Возраст: " + age + "\n" +
                         "Пол: " + (sex ? "М" : "Ж")
         );

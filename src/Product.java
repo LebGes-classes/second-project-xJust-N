@@ -45,23 +45,23 @@ public class Product implements Printable{
         this.sizeValue = sizeValue;
     }
 
-    int getCount() {
+    public int getCount() {
         return count;
     }
 
-    void setCount(int count) {
+    public void setCount(int count) {
         this.count = count;
     }
     void addCount(int count){this.count += count;}
 
-    Product copyAndSetCount(int count){
+    public Product copyAndSetCount(int count){
         return new Product(name, count, price, sizeValue);
     }
 
     @Override
     public void printInfo(){
         System.out.println(
-                "Название: " + name + "\n" +
+                        "Название: " + name + "\n" +
                         "Цена: " + price + "\n" +
                         "Количество: " + count + "\n" +
                         "Размер: " + sizeValue

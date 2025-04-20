@@ -1,52 +1,53 @@
 package src;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 class StorageCell {
-    private Map<String,Product> products;
+    private final Map<String, Product> products;
     private int size;
     private final int capacity;
 
-    StorageCell(int capacity){
+    StorageCell(int capacity) {
+        products = new HashMap<>();
         size = 0;
         this.capacity = capacity;
     }
-    StorageCell(){
+
+    StorageCell() {
         this(1000);
     }
 
-    public void add(Product product, int count) throws IOException{
+
+    public void add(Product product, int count) throws IOException {
         String name = product.getName();
 
-        if(size + product.getSizeValue() * count <= capacity) {
-            if(!products.containsKey(name)){ //не содержит такой продукт
+        if (size + product.getSizeValue() * count <= capacity) {
+            if (products.containsKey(name)) {         // если содержит такой продукт = ссылка на него
+                product = products.get(name);
+            } else {                                   // иначе - помещаем в ячейку
                 products.put(name, product);
             }
-            else{
-                product = products.get(name);// если содержит = ссылка на него
-            }
-            product.setCount(product.getCount() + count);
+            product.addCount(count);
             size += product.getSizeValue() * count;
-        }
-        else{
+        } else {
             throw new IOException("Не хватает места");
         }
     }
 
-    public void remove(Product pr, int count) throws IOException{
+    public void remove(Product pr, int count) throws IOException {
         String name = pr.getName();
         Product cellProduct = products.get(name);
-        if(cellProduct.getCount() == count){
+
+        if (cellProduct.getCount() == count) {
             products.remove(name);
-        }
-        else if(cellProduct.getCount() >= count){
-            cellProduct.addCount(- count);
-        }
-        else{
-            throw new IOException("Такого количества продукта на складе нет");
+            size -= pr.getSizeValue() * count;
+        } else if (cellProduct.getCount() >= count) {
+            cellProduct.addCount(-count);
+            size -= pr.getSizeValue() * count;
+        } else {
+            throw new IOException("Такого количества продукта в ячейке склада нет");
         }
     }
 
@@ -57,8 +58,8 @@ class StorageCell {
     public int getCapacity() {
         return capacity;
     }
-    
-    public Map<String, Product> getProducts(){
+
+    public Map<String, Product> getProducts() {
         return products;
     }
 
