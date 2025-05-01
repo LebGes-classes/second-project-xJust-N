@@ -1,19 +1,19 @@
 package src.handlers;
 
-import src.*;
+import src.objects.*;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 
 class SalingPointInputHandler extends InputHandler{
+    private final Map<String, Storage> storages;
     private final Map<String, SalingPoint> salingPoints;
     private final Map<String, Customer> customers;
     private final Map<String, Employee> employees;
 
     SalingPointInputHandler(){
+        storages = companyData.getStorages();
         salingPoints = companyData.getSalingPoints();
         customers = companyData.getCustomers();
         employees = companyData.getEmployees();
@@ -21,8 +21,7 @@ class SalingPointInputHandler extends InputHandler{
 
     @Override
     public void printMenu() {
-        clearConsole();
-        System.out.println(
+        ui.print(
                 """
                 \t---Выберете действие---\t
 
@@ -42,73 +41,64 @@ class SalingPointInputHandler extends InputHandler{
         switch(command){
             case("1"): infoMenu(salingPoints); break;
             case("2"): sellToCustomerMenu(); break;
-            case("3"): returnProductsToStorage(); break;
+            case("3"): returnProductsToStorageMenu(); break;
             case("4"): newSalingPointMenu(); break;
             case("5"): closeSalingPointMenu(); break;
             case("6"): addEmployeeMenu(); break;
             case("7"): removeEmployeeMenu(); break;
-            default: printErrorMessage("Неверная команда");
+            default: ui.printErrorMessage("Неверная команда");
         }
     }
 
 
     private void sellToCustomerMenu(){
-        clearConsole();
-        System.out.println("Введите название пункта продаж");
-        SalingPoint sp = salingPoints.get(scanner.nextLine());
-        System.out.println("Введите имя покупателя");
-        Customer customer = customers.get(scanner.nextLine());
-        System.out.println("Введите название продукта и количество");
+        ui.print("Введите название пункта продаж");
+        SalingPoint sp = salingPoints.get(ui.readLine());
+        ui.print("Введите имя покупателя");
+        Customer customer = customers.get(ui.readLine());
+        ui.print("Введите название продукта и количество");
+        List<Product> listOfProducts = getListOfProductsByName();
+        sp.sellToCustomer(customer, listOfProducts);
 
 
     }
-    private void returnProductsToStorage(){
-
+    private void returnProductsToStorageMenu(){
+        ui.print("Введите название пункта продаж");
+        SalingPoint sp = salingPoints.get(ui.readLine());
+        ui.print("Введите название склада");
+        Storage storage = storages.get(ui.readLine());
+        ui.print("Введите название продукта и количество");
+        List<Product> listOfProducts = getListOfProductsByName();
+        sp.returnToStorage(storage, listOfProducts);
     }
-    private void newStorageMenu(){
-        clearConsole();
-        System.out.println("Введите имя склада");
-        String name = scanner.nextLine().trim().toLowerCase();
-        companyData.add(new Storage(name));
-    }
-
-    private void closeStorageMenu(){
-        clearConsole();
-        System.out.println("Введите имя склада");
-        String name = scanner.nextLine().trim().toLowerCase();
-        try {
-            companyData.removeStorage(name);
-        } catch (Exception e) {
-            printErrorMessage(e.getMessage());
-        }
-    }
-    private void buyProductsOnStorageMenu(){
-        System.out.println("Введите имя склада");
-        String name = scanner.nextLine().trim().toLowerCase();
-        try {
-            Storage storage = storages.get(name);
-            List<Product> listOfProducts = getListOfProductsByName();
-            storage.add(listOfProducts);
-        } catch (IOException e) {
-            printErrorMessage(e.getMessage());
-        }
-    }
-    private void addEmployeeOnStorageMenu(){
-        System.out.println("Введите имя склада");
-        String name = scanner.nextLine().trim().toLowerCase();
-        Storage storage = storages.get(name);
-        System.out.println("Введите имя работника");
-        name = scanner.nextLine().trim().toLowerCase();
-        storage.add(employees.get(name));
+    private void newSalingPointMenu(){
+        ui.print("Введите имя пункта");
+        String name = ui.readLine();
+        companyData.add(new SalingPoint(name));
     }
 
-    private void removeEmployeeOnStorageMenu(){
-        System.out.println("Введите имя склада");
-        String name = scanner.nextLine().trim().toLowerCase();
-        Storage storage = storages.get(name);
-        System.out.println("Введите имя работника");
-        name = scanner.nextLine().trim().toLowerCase();
-        storage.remove(employees.get(name));
+    private void closeSalingPointMenu(){
+        ui.print("Введите имя пункта");
+        String name = ui.readLine();
+        companyData.removeSalingPoint(name);
+    }
+
+    private void addEmployeeMenu(){
+        ui.print("Введите имя пункта");
+        String name = ui.readLine();
+        SalingPoint sp = salingPoints.get(name);
+        ui.print("Введите имя работника");
+        name = ui.readLine();
+        sp.add(employees.get(name));
+    }
+
+    private void removeEmployeeMenu(){
+        ui.print("Введите имя пункта");
+        String name = ui.readLine();
+        SalingPoint sp = salingPoints.get(name);
+        ui.print("Введите имя работника");
+        name = ui.readLine();
+        sp.remove(employees.get(name));
     }
 
 

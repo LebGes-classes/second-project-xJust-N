@@ -5,8 +5,7 @@ public class MainMenuInputHandler extends InputHandler{
     public MainMenuInputHandler(){}
     @Override
     public void printMenu() {
-        clearConsole();
-        System.out.println(
+        ui.print(
                         """
                         \t---Добро пожаловать!---\t 
                         Выберете раздел:
@@ -27,7 +26,7 @@ public class MainMenuInputHandler extends InputHandler{
             case("3"): setCurrentHandler(new ProductInputHandler()); break;
             case("4"): setCurrentHandler(new EmployeeInputHandler()); break;
             case("5"): setCurrentHandler(new CustomerInputHandler()); break;
-            default: printErrorMessage("Неверная команда");
+            default: ui.printErrorMessage("Неверная команда");
         }
     }
 }

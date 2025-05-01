@@ -1,12 +1,12 @@
-package src;
+package src.objects;
 
-public class Product implements Printable{
+public class Product implements Printable {
     private String name;
     private int count;
     private int price;
     private int sizeValue;
 
-    Product(String name, int price, int sizeValue){
+    public Product(String name, int price, int sizeValue){
         this(
                 name,
                 0,
@@ -21,7 +21,7 @@ public class Product implements Printable{
         setSizeValue(sizeValue);
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
@@ -59,14 +59,13 @@ public class Product implements Printable{
     }
 
     @Override
-    public void printInfo(){
-        System.out.println(
-                        "Название: " + name + "\n" +
-                        "Цена: " + price + "\n" +
-                        "Количество: " + count + "\n" +
-                        "Размер: " + sizeValue
+    public String getInfo(){
+        return "Название: " + name + "\n" +
+                "Цена: " + price + "\n" +
+                "Количество: " + count + "\n" +
+                "Размер: " + sizeValue;
 
-        );
+
     }
 
 }

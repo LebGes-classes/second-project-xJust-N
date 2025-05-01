@@ -1,9 +1,7 @@
-package src;
+package src.objects;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static src.handlers.InputHandler.printAllInfo;
 
 public class Customer extends Profile implements Printable {
     private final Map<String, Product> listOfProducts;
@@ -27,13 +25,15 @@ public class Customer extends Profile implements Printable {
     }
 
     @Override
-    public void printInfo() {
-        super.printInfo();
-        System.out.println(
-                        "Всего заказов: " + numberOfOrders + "\n" +
-                        "Купленные товары: "
-        );
-        printAllInfo(listOfProducts.values());
+    public String getInfo() {
+        String info = super.getInfo() +
+                "Всего заказов: " + numberOfOrders + "\n" +
+                "Купленные товары: " + "\n";
+
+        for(Product pr : listOfProducts.values()){
+            info += pr.getInfo();
+        }
+        return info;
     }
 
 

@@ -1,4 +1,4 @@
-package src;
+package src.objects;
 
 public class Profile implements Printable {
     private String name;
@@ -36,12 +36,11 @@ public class Profile implements Printable {
     }
 
     @Override
-    public void printInfo(){
-        System.out.println(
-                        "Имя: " + name + "\n" +
-                        "Возраст: " + age + "\n" +
-                        "Пол: " + (sex ? "М" : "Ж")
-        );
+    public String getInfo(){
+        return "Имя: " + name + "\n" +
+                "Возраст: " + age + "\n" +
+                "Пол: " + (sex ? "М" : "Ж");
+
     }
 
 

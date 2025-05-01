@@ -1,4 +1,4 @@
-package src;
+package src.objects;
 
 public class Employee extends Profile implements Printable {
     private String positionOnWork;
@@ -21,13 +21,9 @@ public class Employee extends Profile implements Printable {
     }
 
     @Override
-    public void printInfo() {
-        super.printInfo();
-        System.out.println(
-                        "Должность: " + positionOnWork + "\n" +
-                        "Опыт работы: " + yearsOnWork
-        );
+    public String getInfo() {
+        return super.getInfo() +
+                "Должность: " + positionOnWork + "\n" +
+                "Опыт работы: " + yearsOnWork + "\n";
     }
-
-
 }

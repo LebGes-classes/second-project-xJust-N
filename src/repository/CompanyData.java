@@ -1,4 +1,6 @@
-package src;
+package src.repository;
+
+import src.objects.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,8 +29,12 @@ public class CompanyData {
         return instance;
     }
 
-    public static CompanyData load() {
-        return instance;
+    public void load() {
+
+    }
+
+    public void save() {
+
     }
 
 
@@ -40,9 +46,7 @@ public class CompanyData {
         salingPoints.put(sp.getName(), sp);
     }
 
-    public void add(Product p) {
-        availableProducts.put(p.getName(), p);
-    }
+    public void add(Product p) {availableProducts.put(p.getName(), p);}
 
     public void add(Employee e) {
         employees.put(e.getName(), e);

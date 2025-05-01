@@ -1,12 +1,7 @@
-package src;
+package src.objects;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import static src.handlers.InputHandler.printAllInfo;
+import java.util.*;
 
 public class Storage implements Printable {
     private final List<StorageCell> storageCells;
@@ -17,7 +12,10 @@ public class Storage implements Printable {
 
     Storage(String name, int capacity) {
         this.name = name;
-        storageCells = new ArrayList<>(capacity);
+        storageCells = new LinkedList<>();
+        for(int i = 0; i < capacity; i++){
+            storageCells.add(new StorageCell());
+        }
         employees = new HashMap<>();
         size = 0;
         this.capacity = capacity;
@@ -33,10 +31,10 @@ public class Storage implements Printable {
                 return cell;
             }
         }
-        throw new RuntimeException("Не хватает места на складе");
+        throw new IllegalStateException("Не хватает места на складе");
     }
 
-    public void add(Product product, int count) throws IOException {
+    public void add(Product product, int count) {
         int size = product.getSizeValue() * count;
 
         StorageCell cell = findValidCell(size);
@@ -44,7 +42,7 @@ public class Storage implements Printable {
         this.size += size;
     }
 
-    public void add(List<Product> products) throws IOException {
+    public void add(List<Product> products) throws IllegalArgumentException {
         for (Product product : products) {
             add(product, product.getCount());
         }
@@ -55,7 +53,7 @@ public class Storage implements Printable {
     }
 
 
-    public void remove(Product product, int count) throws IOException {
+    public void remove(Product product, int count) {
         StorageCell cell = findCellContainsProduct(product);
         cell.remove(product, count);
     }
@@ -64,14 +62,14 @@ public class Storage implements Printable {
         employees.remove(employee.getName());
     }
 
-    public void move(Storage storage, List<Product> listOfProducts) throws IOException {
+    public void move(Storage storage, List<Product> listOfProducts) {
         for (Product product : listOfProducts) {
             remove(product, product.getCount());
             storage.add(product, product.getCount());
         }
 
     }
-    public void move(SalingPoint salingPoint, List<Product> listOfProducts) throws IOException {
+    public void move(SalingPoint salingPoint, List<Product> listOfProducts) {
         for (Product product : listOfProducts) {
             remove(product, product.getCount());
             salingPoint.add(product, product.getCount());
@@ -79,7 +77,7 @@ public class Storage implements Printable {
 
     }
 
-    public StorageCell findCellContainsProduct(Product product) throws IOException {
+    public StorageCell findCellContainsProduct(Product product) {
         int count = product.getCount();
         String name = product.getName();
         for (StorageCell cell : storageCells) {
@@ -87,17 +85,7 @@ public class Storage implements Printable {
                 return cell;
             }
         }
-        throw new IOException("Склад не содержит продукт в нужном количестве");
-    }
-
-    public Map<String, Product> getAllProducts() {
-        Map<String, Product> mapOfProducts = new HashMap<>();
-        for (StorageCell cell : storageCells) {
-            for (Product product : cell.getProducts().values()) {
-                mapOfProducts.put(product.getName(), product);
-            }
-        }
-        return mapOfProducts;
+        throw new IllegalStateException("Склад не содержит продукт в нужном количестве");
     }
 
     public String getName() {
@@ -108,36 +96,24 @@ public class Storage implements Printable {
         this.name = name;
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public Map<String, Employee> getEmployees() {
-        return employees;
-    }
-
-    public List<StorageCell> getStorageCells() {
-        return storageCells;
-    }
-
-
     @Override
-    public void printInfo() {
-        System.out.println(
-                        "Название: " + name + "\n" +
-                        "Заполненность: " + size + "/" + capacity + "\n" +
-                        "Ответственные лица: "
-        );
-        printAllInfo(employees.values());
+    public String getInfo() {
+        String info =
+                "Название: " + name + "\n" +
+                "Заполненность: " + size + "/" + capacity + "\n" +
+                "Ответственные лица: " + "\n";
 
-        System.out.println("Товары: ");
-        for (StorageCell cell : storageCells) {
-            printAllInfo(cell.getProducts().values());
+        for(Employee e : employees.values()){
+            info += e.getInfo();
         }
+
+        info += "Товары: " + "\n";
+        for(StorageCell cell : storageCells){
+            for(Product p : cell.getProducts().values()){
+                info += p.getInfo();
+            }
+        }
+        return info;
 
     }
 

@@ -1,4 +1,4 @@
-package src;
+package src.objects;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -20,7 +20,7 @@ class StorageCell {
     }
 
 
-    public void add(Product product, int count) throws IOException {
+    public void add(Product product, int count) {
         String name = product.getName();
 
         if (size + product.getSizeValue() * count <= capacity) {
@@ -32,11 +32,11 @@ class StorageCell {
             product.addCount(count);
             size += product.getSizeValue() * count;
         } else {
-            throw new IOException("Не хватает места");
+            throw new IllegalStateException("Не хватает места");
         }
     }
 
-    public void remove(Product pr, int count) throws IOException {
+    public void remove(Product pr, int count) {
         String name = pr.getName();
         Product cellProduct = products.get(name);
 
@@ -47,7 +47,7 @@ class StorageCell {
             cellProduct.addCount(-count);
             size -= pr.getSizeValue() * count;
         } else {
-            throw new IOException("Такого количества продукта в ячейке склада нет");
+            throw new IllegalArgumentException("Такого количества продукта в ячейке склада нет");
         }
     }
 
