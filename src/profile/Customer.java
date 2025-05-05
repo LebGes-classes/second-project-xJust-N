@@ -1,4 +1,7 @@
-package src.objects;
+package profile;
+
+import storage.Printable;
+import products.Product;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +29,7 @@ public class Customer extends Profile implements Printable {
 
     @Override
     public String getInfo() {
-        String info = super.getInfo() +
+        String info = super.getInfo() + "\n" +
                 "Всего заказов: " + numberOfOrders + "\n" +
                 "Купленные товары: " + "\n";
 

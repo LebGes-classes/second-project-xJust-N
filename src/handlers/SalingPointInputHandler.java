@@ -1,6 +1,9 @@
-package src.handlers;
+package handlers;
 
-import src.objects.*;
+import products.Product;
+import profile.Customer;
+import profile.Employee;
+import storage.*;
 
 import java.util.List;
 import java.util.Map;

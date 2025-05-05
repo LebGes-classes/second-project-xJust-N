@@ -1,6 +1,6 @@
-package src.handlers;
+package handlers;
 
-import src.objects.*;
+import products.Product;
 
 import java.util.Map;
 

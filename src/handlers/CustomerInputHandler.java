@@ -1,4 +1,4 @@
-package src.handlers;
+package handlers;
 
 public class CustomerInputHandler extends InputHandler {
     @Override

@@ -1,21 +1,16 @@
-package src;
 
-import src.handlers.InputHandler;
-import src.handlers.MainMenuInputHandler;
-import src.repository.CompanyData;
-import src.ui.UI;
-
-import java.util.Scanner;
+import handlers.InputHandler;
+import handlers.MainMenuInputHandler;
+import repository.CompanyData;
+import ui.UI;
 
 public class CompanyApp {
     private final CompanyData companyData;
-    private final Scanner scanner;
     private boolean isRunning;
 
 
     CompanyApp(){
         companyData = CompanyData.getData();
-        scanner = new Scanner(System.in);
         isRunning = false;
     }
     public void start(){
@@ -31,7 +26,7 @@ public class CompanyApp {
         while(isRunning){
             currentHandler = InputHandler.getCurrentHandler();
             ui.print(currentHandler);
-            String command = ui.readLine().trim().toLowerCase();
+            String command = ui.readLine();
 
             switch (command){
                 case("back"):

@@ -1,6 +1,9 @@
-package src.handlers;
+package handlers;
 
-import src.objects.*;
+import products.Product;
+import profile.Employee;
+import storage.SalingPoint;
+import storage.Storage;
 
 import java.util.List;
 import java.util.Map;
@@ -73,38 +76,38 @@ class StorageInputHandler extends InputHandler{
 
     private void newStorageMenu(){
         ui.print("Введите имя склада");
-        String name = ui.readLine().trim().toLowerCase();
+        String name = ui.readLine();
         companyData.add(new Storage(name));
     }
     
     private void closeStorageMenu(){
         ui.print("Введите имя склада");
-        String name = ui.readLine().trim().toLowerCase();
+        String name = ui.readLine();
         companyData.removeStorage(name);
     }
 
     private void buyProductsOnStorageMenu(){
         ui.print("Введите имя склада");
-        String name = ui.readLine().trim().toLowerCase();
+        String name = ui.readLine();
         Storage storage = storages.get(name);
         List<Product> listOfProducts = getListOfProductsByName();
         storage.add(listOfProducts);
     }
     private void addEmployeeOnStorageMenu(){
         ui.print("Введите имя склада");
-        String name = ui.readLine().trim().toLowerCase();
+        String name = ui.readLine();
         Storage storage = storages.get(name);
         ui.print("Введите имя работника");
-        name = ui.readLine().trim().toLowerCase();
+        name = ui.readLine();
         storage.add(employees.get(name));
     }
 
     private void removeEmployeeOnStorageMenu(){
         ui.print("Введите имя склада");
-        String name = ui.readLine().trim().toLowerCase();
+        String name = ui.readLine();
         Storage storage = storages.get(name);
         ui.print("Введите имя работника");
-        name = ui.readLine().trim().toLowerCase();
+        name = ui.readLine();
         storage.remove(employees.get(name));
     }
 

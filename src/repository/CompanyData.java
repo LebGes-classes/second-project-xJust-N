@@ -1,6 +1,8 @@
-package src.repository;
+package repository;
 
-import src.objects.*;
+import products.Product;
+import profile.*;
+import storage.*;
 
 import java.util.HashMap;
 import java.util.Map;

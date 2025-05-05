@@ -1,4 +1,6 @@
-package src.objects;
+package products;
+
+import storage.Printable;
 
 public class Product implements Printable {
     private String name;
@@ -29,7 +31,7 @@ public class Product implements Printable {
         this.name = name;
     }
 
-    int getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -37,7 +39,7 @@ public class Product implements Printable {
         this.price = price;
     }
 
-    int getSizeValue() {
+    public int getSizeValue() {
         return sizeValue;
     }
 
@@ -52,7 +54,7 @@ public class Product implements Printable {
     public void setCount(int count) {
         this.count = count;
     }
-    void addCount(int count){this.count += count;}
+    public void addCount(int count){this.count += count;}
 
     public Product copyAndSetCount(int count){
         return new Product(name, count, price, sizeValue);

@@ -1,4 +1,6 @@
-package src.objects;
+package profile;
+
+import storage.Printable;
 
 public class Profile implements Printable {
     private String name;

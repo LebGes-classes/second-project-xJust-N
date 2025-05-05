@@ -1,9 +1,9 @@
-package src.handlers;
+package handlers;
 
-import src.objects.Printable;
-import src.objects.Product;
-import src.repository.CompanyData;
-import src.ui.UI;
+import storage.Printable;
+import products.Product;
+import repository.CompanyData;
+import ui.UI;
 
 import java.util.*;
 
@@ -29,7 +29,7 @@ public abstract class InputHandler {
                 "2) Показать об одном\n"
          );
 
-        String in = ui.readLine().trim().toLowerCase();
+        String in = ui.readLine();
 
         switch(in){
             case("1"):
@@ -41,25 +41,42 @@ public abstract class InputHandler {
                 }
         ui.readLine();
     }
-    
 
 
-    protected List<Product> getListOfProductsByName(){
+
+    protected List<Product> getListOfProductsByName() {
         List<Product> listOfProducts = new LinkedList<>();
         boolean flagToContinue = true;
 
-        while(flagToContinue) {
+        while (flagToContinue) {
             ui.print(
-                    "Введите имя товара и его количество\n" +
+                    "Введите имя товара и его количество(0 для остановки)\n" +
                     "Формат ввода: <Имя> <Количество>\n" +
-                    "Текущий список: ");
+                    "Текущий список:\n");
             ui.printAllInfo(listOfProducts);
-            String[] input = ui.readLine().split(" ");
-            String name = input[0];
-            int count = Integer.parseInt(input[1]);
-            Product availableProduct = companyData.getProducts().get(name);
-            listOfProducts.add(availableProduct.copyAndSetCount(count));
 
+            String input = ui.readLine();
+            if (input.equals("0")) {
+                flagToContinue = false;
+                continue;
+            }
+
+            try {
+                String[] splitInput = input.split(" ");
+                if (splitInput.length != 2) {
+                    throw new IllegalArgumentException("Неверный формат ввода");
+                }
+                String name = splitInput[0];
+                int count = Integer.parseInt(splitInput[1]);
+                Product availableProduct = companyData.getProducts().get(name);
+                if (availableProduct == null) {
+                    throw new IllegalArgumentException("Такого продукта нет");
+                }
+                listOfProducts.add(availableProduct.copyAndSetCount(count));
+
+            } catch (Exception e) {
+                ui.printErrorMessage(e.getMessage());
+            }
         }
         return listOfProducts;
     }

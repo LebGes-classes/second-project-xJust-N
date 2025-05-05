@@ -1,9 +1,11 @@
-package src.objects;
+package storage;
 
+import products.Product;
+import profile.Employee;
 
 import java.util.*;
 
-public class Storage implements Printable {
+public class Storage implements Printable, Workable {
     private final List<StorageCell> storageCells;
     private final Map<String, Employee> employees;
     private int size;
@@ -48,8 +50,10 @@ public class Storage implements Printable {
         }
     }
 
+    @Override
     public void add(Employee employee) {
         employees.put(employee.getName(), employee);
+        employee.setWork(this);
     }
 
 
@@ -58,8 +62,11 @@ public class Storage implements Printable {
         cell.remove(product, count);
     }
 
+    @Override
     public void remove(Employee employee){
         employees.remove(employee.getName());
+        employee.setPositionOnWork(null);
+        employee.removeWork();
     }
 
     public void move(Storage storage, List<Product> listOfProducts) {
@@ -88,6 +95,7 @@ public class Storage implements Printable {
         throw new IllegalStateException("Склад не содержит продукт в нужном количестве");
     }
 
+    @Override
     public String getName() {
         return name;
     }

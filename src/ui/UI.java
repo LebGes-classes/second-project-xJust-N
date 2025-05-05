@@ -1,7 +1,7 @@
-package src.ui;
+package ui;
 
-import src.handlers.InputHandler;
-import src.objects.Printable;
+import handlers.InputHandler;
+import storage.Printable;
 
 import java.util.Collection;
 import java.util.Scanner;

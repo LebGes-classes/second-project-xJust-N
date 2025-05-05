@@ -1,6 +1,7 @@
-package src.objects;
+package storage;
 
-import java.io.IOException;
+import products.Product;
+
 import java.util.HashMap;
 import java.util.Map;
 

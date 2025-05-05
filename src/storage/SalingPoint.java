@@ -1,10 +1,14 @@
-package src.objects;
+package storage;
+
+import products.Product;
+import profile.Customer;
+import profile.Employee;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SalingPoint implements Printable {
+public class SalingPoint implements Printable, Workable {
 
     private String name;
     private final Map<String, Product> listOfProducts;
@@ -27,9 +31,10 @@ public class SalingPoint implements Printable {
             listOfProducts.put(product.getName(), product);
         }
     }
-
+    @Override
     public void add(Employee employee) {
         employees.put(employee.getName(), employee);
+        employee.setWork(this);
     }
 
     private void remove(Product pr, int count){
@@ -45,8 +50,11 @@ public class SalingPoint implements Printable {
         }
     }
 
+    @Override
     public void remove(Employee employee) {
         employees.remove(employee.getName());
+        employee.setPositionOnWork(null);
+        employee.removeWork();
     }
 
     public void returnToStorage(Storage storage, List<Product> listOfProducts){
@@ -68,6 +76,7 @@ public class SalingPoint implements Printable {
         return listOfProducts;
     }
 
+    @Override
     public String getName() {
         return name;
     }
