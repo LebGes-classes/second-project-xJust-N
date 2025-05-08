@@ -10,16 +10,16 @@
             <mxPoint x="450" y="230.0000000000001" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="UpxoAmuJfZNjGjD0mo9Q-1" value="storage.Storage" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="UpxoAmuJfZNjGjD0mo9Q-1" value="app.main.storage.Storage" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="194" y="161" width="190" height="120" as="geometry" />
         </mxCell>
         <mxCell id="UpxoAmuJfZNjGjD0mo9Q-2" value="cells&lt;div&gt;employees&lt;/div&gt;&lt;div&gt;sellingPoints&lt;/div&gt;&lt;div&gt;address&lt;/div&gt;&lt;div&gt;size&lt;/div&gt;&lt;div&gt;capacity&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="UpxoAmuJfZNjGjD0mo9Q-1" vertex="1">
           <mxGeometry y="26" width="190" height="94" as="geometry" />
         </mxCell>
-        <mxCell id="UpxoAmuJfZNjGjD0mo9Q-5" value="storage.StorageCell" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="UpxoAmuJfZNjGjD0mo9Q-5" value="app.main.storage.StorageCell" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="450" y="166" width="190" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="UpxoAmuJfZNjGjD0mo9Q-6" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;products&lt;/span&gt;&lt;/div&gt;&lt;div&gt;size&lt;/div&gt;&lt;div&gt;capacity&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="UpxoAmuJfZNjGjD0mo9Q-5" vertex="1">
+        <mxCell id="UpxoAmuJfZNjGjD0mo9Q-6" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;app.main.products&lt;/span&gt;&lt;/div&gt;&lt;div&gt;size&lt;/div&gt;&lt;div&gt;capacity&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="UpxoAmuJfZNjGjD0mo9Q-5" vertex="1">
           <mxGeometry y="26" width="190" height="64" as="geometry" />
         </mxCell>
         <mxCell id="UpxoAmuJfZNjGjD0mo9Q-9" value="Product" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
