@@ -13,6 +13,7 @@ public class JsonDataHandler {
     private final String FILE_NAME = "resources/company_data.json";
     private final Gson gson;
     private final File file;
+
     JsonDataHandler(){
         gson = new GsonBuilder()
                 .setPrettyPrinting()
@@ -20,7 +21,7 @@ public class JsonDataHandler {
         file = new File(FILE_NAME);
     }
 
-    public void saveToJson(Object data) {
+    public <T> void saveToJson(T data) {
         if(!file.exists()){
             try {
                 file.createNewFile();
@@ -31,18 +32,18 @@ public class JsonDataHandler {
         try (FileWriter writer = new FileWriter(FILE_NAME)) {
             gson.toJson(data, writer);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
-    public <T> T loadFromJson(Class<T> classToLoad) {
+    public <T> T loadFromJson(Class<T> tClass) {
         if(!file.exists())
             return null;
 
         try (FileReader reader = new FileReader(FILE_NAME)) {
-            return gson.fromJson(reader, classToLoad);
-        } catch (IOException _) {
-            return null;
+            return gson.fromJson(reader, tClass);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

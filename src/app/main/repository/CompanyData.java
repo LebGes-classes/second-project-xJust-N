@@ -35,12 +35,12 @@ public class CompanyData{
 
     public void save() {
         JsonDataHandler dataHandler = new JsonDataHandler();
-        dataHandler.saveToJson(this);
+        dataHandler.saveToJson(instance);
     }
 
     public void load() {
         JsonDataHandler dataHandler = new JsonDataHandler();
-        instance = dataHandler.loadFromJson(this.getClass());
+        instance = dataHandler.loadFromJson(CompanyData.class);
     }
 
 

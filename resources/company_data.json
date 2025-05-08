@@ -1,0 +1,20 @@
+{
+  "storages": {},
+  "salingPoints": {},
+  "availableProducts": {
+    "milk": {
+      "name": "milk",
+      "count": 0,
+      "price": 10,
+      "sizeValue": 10
+    },
+    "dark chocolate": {
+      "name": "dark chocolate",
+      "count": 0,
+      "price": 105,
+      "sizeValue": 3
+    }
+  },
+  "employees": {},
+  "customers": {}
+}
