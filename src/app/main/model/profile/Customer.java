@@ -1,7 +1,7 @@
-package app.main.profile;
+package app.main.model.profile;
 
-import app.main.storage.Printable;
-import app.main.products.Product;
+import app.main.model.storage.Printable;
+import app.main.model.products.Product;
 
  
 import java.util.HashMap;
@@ -11,7 +11,7 @@ public class Customer extends Profile implements Printable {
     private final Map<String, Product> listOfProducts;
     private int numberOfOrders;
 
-    Customer(String name, int age, boolean sex) {
+    public Customer(String name, int age, boolean sex) {
         super(name, age, sex);
         listOfProducts = new HashMap<>();
         numberOfOrders = 0;

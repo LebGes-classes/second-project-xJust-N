@@ -1,7 +1,7 @@
 package app.main.ui;
 
 import app.main.handlers.InputHandler;
-import app.main.storage.Printable;
+import app.main.model.storage.Printable;
 
 import java.util.Collection;
 import java.util.Scanner;
@@ -31,13 +31,18 @@ public class UI {
     private void printBaseOptions(){
         System.out.println(
                 "back) Вернуться в главное меню " + "\n" +
-                "save) Сохранить" + "\n" +
-                "exit) Закрыть приложение"
+                "exit) Закрыть приложение" + "\n"
         );
     }
 
     public void printErrorMessage(String message){
+        clearConsole();
         System.out.println("Ошибка! " + message);
+        waitForInput();
+    }
+    public void waitForInput(){
+        System.out.println("Введите любую строку чтобы продолжить");
+        readLine();
     }
 
     public String readLine(){

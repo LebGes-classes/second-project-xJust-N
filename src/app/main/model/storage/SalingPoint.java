@@ -1,8 +1,8 @@
-package app.main.storage;
+package app.main.model.storage;
 
-import app.main.products.Product;
-import app.main.profile.Customer;
-import app.main.profile.Employee;
+import app.main.model.products.Product;
+import app.main.model.profile.Customer;
+import app.main.model.profile.Employee;
 
  
 import java.util.HashMap;

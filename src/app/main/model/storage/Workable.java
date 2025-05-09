@@ -1,6 +1,6 @@
-package app.main.storage;
+package app.main.model.storage;
 
-import app.main.profile.Employee;
+import app.main.model.profile.Employee;
 
 public interface Workable {
     void add(Employee e);

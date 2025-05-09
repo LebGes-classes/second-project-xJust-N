@@ -1,9 +1,9 @@
 package app.main.handlers;
 
-import app.main.products.Product;
-import app.main.profile.Employee;
-import app.main.storage.SalingPoint;
-import app.main.storage.Storage;
+import app.main.model.products.Product;
+import app.main.model.profile.Employee;
+import app.main.model.storage.SalingPoint;
+import app.main.model.storage.Storage;
 
 import java.util.List;
 import java.util.Map;
@@ -58,19 +58,20 @@ class StorageInputHandler extends InputHandler{
 
     private void moveProductsOnStorageMenu() {
         ui.print("Введите имя склада отправителя");
-        Storage st1 = storages.get(ui.readLine());
+        Storage st1 = getObjectByInput(storages);
         ui.print("Введите имя склада получателя");
-        Storage st2 = storages.get(ui.readLine());
-        List<Product> listOfProducts = getListOfProductsByName();
+        Storage st2 = getObjectByInput(storages);
+
+        List<Product> listOfProducts = getListOfProductsByInput();
         st1.move(st2, listOfProducts);
     }
 
     private void moveProductsOnSalingPointMenu() {
         ui.print("Введите имя склада отправителя");
-        Storage storage = storages.get(ui.readLine());
+        Storage storage = getObjectByInput(storages);
         ui.print("Введите имя пункта выдачи");
-        SalingPoint salingPoint = salingPoints.get(ui.readLine());
-        List<Product> listOfProducts = getListOfProductsByName();
+        SalingPoint salingPoint = getObjectByInput(salingPoints);
+        List<Product> listOfProducts = getListOfProductsByInput();
         storage.move(salingPoint, listOfProducts);
     }
 
@@ -82,33 +83,27 @@ class StorageInputHandler extends InputHandler{
     
     private void closeStorageMenu(){
         ui.print("Введите имя склада");
-        String name = ui.readLine();
-        companyData.remove(storages.get(name));
+        companyData.remove(getObjectByInput(storages));
     }
 
     private void buyProductsOnStorageMenu(){
         ui.print("Введите имя склада");
-        String name = ui.readLine();
-        Storage storage = storages.get(name);
-        List<Product> listOfProducts = getListOfProductsByName();
+        Storage storage = getObjectByInput(storages);
+        List<Product> listOfProducts = getListOfProductsByInput();
         storage.add(listOfProducts);
     }
     private void addEmployeeOnStorageMenu(){
         ui.print("Введите имя склада");
-        String name = ui.readLine();
-        Storage storage = storages.get(name);
+        Storage storage = getObjectByInput(storages);
         ui.print("Введите имя работника");
-        name = ui.readLine();
-        storage.add(employees.get(name));
+        storage.add(getObjectByInput(employees));
     }
 
     private void removeEmployeeOnStorageMenu(){
         ui.print("Введите имя склада");
-        String name = ui.readLine();
-        Storage storage = storages.get(name);
+        Storage storage = getObjectByInput(storages);
         ui.print("Введите имя работника");
-        name = ui.readLine();
-        storage.remove(employees.get(name));
+        storage.remove(getObjectByInput(employees));
     }
 
 }

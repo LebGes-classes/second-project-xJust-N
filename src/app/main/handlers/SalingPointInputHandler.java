@@ -1,9 +1,9 @@
 package app.main.handlers;
 
-import app.main.products.Product;
-import app.main.profile.Customer;
-import app.main.profile.Employee;
-import app.main.storage.*;
+import app.main.model.products.Product;
+import app.main.model.profile.Customer;
+import app.main.model.profile.Employee;
+import app.main.model.storage.*;
 
 import java.util.List;
 import java.util.Map;
@@ -56,22 +56,22 @@ class SalingPointInputHandler extends InputHandler{
 
     private void sellToCustomerMenu(){
         ui.print("Введите название пункта продаж");
-        SalingPoint sp = salingPoints.get(ui.readLine());
+        SalingPoint sp = getObjectByInput(salingPoints);
         ui.print("Введите имя покупателя");
-        Customer customer = customers.get(ui.readLine());
+        Customer customer = getObjectByInput(customers);
         ui.print("Введите название продукта и количество");
-        List<Product> listOfProducts = getListOfProductsByName();
+        List<Product> listOfProducts = getListOfProductsByInput();
         sp.sellToCustomer(customer, listOfProducts);
 
 
     }
     private void returnProductsToStorageMenu(){
         ui.print("Введите название пункта продаж");
-        SalingPoint sp = salingPoints.get(ui.readLine());
+        SalingPoint sp = getObjectByInput(salingPoints);
         ui.print("Введите название склада");
-        Storage storage = storages.get(ui.readLine());
+        Storage storage = getObjectByInput(storages);
         ui.print("Введите название продукта и количество");
-        List<Product> listOfProducts = getListOfProductsByName();
+        List<Product> listOfProducts = getListOfProductsByInput();
         sp.returnToStorage(storage, listOfProducts);
     }
     private void newSalingPointMenu(){
@@ -82,26 +82,21 @@ class SalingPointInputHandler extends InputHandler{
 
     private void closeSalingPointMenu(){
         ui.print("Введите имя пункта");
-        String name = ui.readLine();
-        companyData.remove(salingPoints.get(name));
+        companyData.remove(getObjectByInput(salingPoints));
     }
 
     private void addEmployeeMenu(){
         ui.print("Введите имя пункта");
-        String name = ui.readLine();
-        SalingPoint sp = salingPoints.get(name);
+        SalingPoint sp = getObjectByInput(salingPoints);
         ui.print("Введите имя работника");
-        name = ui.readLine();
-        sp.add(employees.get(name));
+        sp.add(getObjectByInput(employees));
     }
 
     private void removeEmployeeMenu(){
         ui.print("Введите имя пункта");
-        String name = ui.readLine();
-        SalingPoint sp = salingPoints.get(name);
+        SalingPoint sp = getObjectByInput(salingPoints);
         ui.print("Введите имя работника");
-        name = ui.readLine();
-        sp.remove(employees.get(name));
+        sp.remove(getObjectByInput(employees));
     }
 
 

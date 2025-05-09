@@ -1,7 +1,7 @@
-package app.main.profile;
+package app.main.model.profile;
 
-import app.main.storage.Printable;
-import app.main.storage.Workable;
+import app.main.model.storage.Printable;
+import app.main.model.storage.Workable;
 
  
 

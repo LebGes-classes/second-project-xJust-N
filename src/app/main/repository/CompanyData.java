@@ -1,10 +1,10 @@
 package app.main.repository;
 
-import app.main.products.Product;
-import app.main.profile.Customer;
-import app.main.profile.Employee;
-import app.main.storage.SalingPoint;
-import app.main.storage.Storage;
+import app.main.model.products.AvailableProduct;
+import app.main.model.profile.Customer;
+import app.main.model.profile.Employee;
+import app.main.model.storage.SalingPoint;
+import app.main.model.storage.Storage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,7 @@ public class CompanyData{
     private static CompanyData instance;
     private final Map<String, Storage> storages;
     private final Map<String, SalingPoint> salingPoints;
-    private final Map<String, Product> availableProducts;
+    private final Map<String, AvailableProduct> availableProducts;
     private final Map<String, Employee> employees;
     private final Map<String, Customer> customers;
 
@@ -52,12 +52,13 @@ public class CompanyData{
         salingPoints.put(sp.getName(), sp);
     }
 
-    public void add(Product p) {availableProducts.put(p.getName(), p);}
+    public void add(AvailableProduct p) {availableProducts.put(p.getName(), p);}
 
     public void add(Employee e) {
         employees.put(e.getName(), e);
     }
 
+    public void add(Customer c) {customers.put(c.getName(), c);}
     public Map<String, Storage> getStorages() {
         return storages;
     }
@@ -66,7 +67,7 @@ public class CompanyData{
         return salingPoints;
     }
 
-    public Map<String, Product> getProducts() {
+    public Map<String, AvailableProduct> getProducts() {
         return availableProducts;
     }
 
@@ -91,10 +92,11 @@ public class CompanyData{
         employees.remove(e.getName());
     }
 
-    public void remove(Product pr) {
+    public void remove(AvailableProduct pr) {
         availableProducts.remove(pr.getName());
     }
     public void remove(Customer c) {
         customers.remove(c.getName());
     }
+
 }

@@ -1,20 +1,263 @@
 {
-  "storages": {},
-  "salingPoints": {},
+  "storages": {
+    "wb storage": {
+      "storageCells": [
+        {
+          "products": {
+            "elephant": {
+              "count": 3,
+              "name": "elephant",
+              "price": 1000000,
+              "sizeValue": 1000
+            },
+            "milk": {
+              "count": 10,
+              "name": "milk",
+              "price": 60,
+              "sizeValue": 5
+            },
+            "electric guitar": {
+              "count": 3,
+              "name": "electric guitar",
+              "price": 50000,
+              "sizeValue": 50
+            }
+          },
+          "size": 200,
+          "capacity": 10000
+        },
+        {
+          "products": {},
+          "size": 0,
+          "capacity": 10000
+        },
+        {
+          "products": {},
+          "size": 0,
+          "capacity": 10000
+        },
+        {
+          "products": {},
+          "size": 0,
+          "capacity": 10000
+        },
+        {
+          "products": {},
+          "size": 0,
+          "capacity": 10000
+        },
+        {
+          "products": {},
+          "size": 0,
+          "capacity": 10000
+        },
+        {
+          "products": {},
+          "size": 0,
+          "capacity": 10000
+        },
+        {
+          "products": {},
+          "size": 0,
+          "capacity": 10000
+        },
+        {
+          "products": {},
+          "size": 0,
+          "capacity": 10000
+        },
+        {
+          "products": {},
+          "size": 0,
+          "capacity": 10000
+        }
+      ],
+      "employees": {},
+      "size": 3200,
+      "capacity": 100000,
+      "name": "wb storage"
+    }
+  },
+  "salingPoints": {
+    "wb sp": {
+      "name": "wb sp",
+      "listOfProducts": {
+        "elephant": {
+          "count": 3,
+          "name": "elephant",
+          "price": 1000000,
+          "sizeValue": 1000
+        }
+      },
+      "employees": {},
+      "yield": 0
+    }
+  },
   "availableProducts": {
     "milk": {
       "name": "milk",
-      "count": 0,
-      "price": 10,
-      "sizeValue": 10
+      "price": 60,
+      "sizeValue": 5
+    },
+    "chocolate": {
+      "name": "chocolate",
+      "price": 120,
+      "sizeValue": 3
     },
     "dark chocolate": {
       "name": "dark chocolate",
-      "count": 0,
-      "price": 105,
+      "price": 130,
       "sizeValue": 3
+    },
+    "apple pie": {
+      "name": "apple pie",
+      "price": 200,
+      "sizeValue": 10
+    },
+    "apple": {
+      "name": "apple",
+      "price": 15,
+      "sizeValue": 3
+    },
+    "orange": {
+      "name": "orange",
+      "price": 10,
+      "sizeValue": 3
+    },
+    "cucumber": {
+      "name": "cucumber",
+      "price": 20,
+      "sizeValue": 2
+    },
+    "gold fish": {
+      "name": "gold fish",
+      "price": 500,
+      "sizeValue": 100
+    },
+    "wrench": {
+      "name": "wrench",
+      "price": 240,
+      "sizeValue": 5
+    },
+    "car wheel": {
+      "name": "car wheel",
+      "price": 10000,
+      "sizeValue": 50
+    },
+    "car": {
+      "name": "car",
+      "price": 5000000,
+      "sizeValue": 1000
+    },
+    "elephant": {
+      "name": "elephant",
+      "price": 1000000,
+      "sizeValue": 1000
+    },
+    "cow": {
+      "name": "cow",
+      "price": 400000,
+      "sizeValue": 600
+    },
+    "pig": {
+      "name": "pig",
+      "price": 300000,
+      "sizeValue": 400
+    },
+    "iphone": {
+      "name": "iphone",
+      "price": 100000,
+      "sizeValue": 5
+    },
+    "playstation": {
+      "name": "playstation",
+      "price": 100000,
+      "sizeValue": 20
+    },
+    "pc": {
+      "name": "pc",
+      "price": 100000,
+      "sizeValue": 40
+    },
+    "electric guitar": {
+      "name": "electric guitar",
+      "price": 50000,
+      "sizeValue": 50
+    },
+    "cookie": {
+      "name": "cookie",
+      "price": 10,
+      "sizeValue": 1
+    },
+    "helicopter": {
+      "name": "helicopter",
+      "price": 10000000,
+      "sizeValue": 1000
+    },
+    "water": {
+      "name": "water",
+      "price": 40,
+      "sizeValue": 5
+    },
+    "cola": {
+      "name": "cola",
+      "price": 100,
+      "sizeValue": 5
+    },
+    "energy drink": {
+      "name": "energy drink",
+      "price": 100,
+      "sizeValue": 3
+    },
+    "coffee": {
+      "name": "coffee",
+      "price": 70,
+      "sizeValue": 3
+    },
+    "banana": {
+      "name": "banana",
+      "price": 50,
+      "sizeValue": 5
+    },
+    "cream pie": {
+      "name": "cream pie",
+      "price": 34700,
+      "sizeValue": 20
     }
   },
-  "employees": {},
-  "customers": {}
+  "employees": {
+    "mark": {
+      "name": "mark",
+      "age": 20,
+      "sex": true
+    },
+    "john": {
+      "name": "john",
+      "age": 34,
+      "sex": true
+    }
+  },
+  "customers": {
+    "sonya arefeva": {
+      "listOfProducts": {},
+      "numberOfOrders": 0,
+      "name": "sonya arefeva",
+      "age": 18,
+      "sex": false
+    },
+    "dave": {
+      "listOfProducts": {},
+      "numberOfOrders": 0,
+      "name": "dave",
+      "age": 30,
+      "sex": true
+    },
+    "anonymous": {
+      "listOfProducts": {},
+      "numberOfOrders": 0,
+      "name": "anonymous",
+      "age": 100,
+      "sex": true
+    }
+  }
 }

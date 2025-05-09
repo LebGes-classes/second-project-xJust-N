@@ -1,11 +1,11 @@
 package app.main.handlers;
 
-import app.main.products.Product;
+import app.main.model.products.AvailableProduct;
 
 import java.util.Map;
 
 public class ProductInputHandler extends InputHandler {
-    private final Map<String, Product> availableProducts;
+    private final Map<String, AvailableProduct> availableProducts;
 
     ProductInputHandler(){
         availableProducts = companyData.getProducts();
@@ -38,16 +38,15 @@ public class ProductInputHandler extends InputHandler {
         ui.print("Введите имя продукта:");
         String name = ui.readLine();
         ui.print("Введите цену за 1 шт:");
-        int price = Integer.parseInt(ui.readLine());
+        int price = parseInt(ui.readLine());
         ui.print("Введите значение размера:");
-        int size = Integer.parseInt(ui.readLine());
-        companyData.add(new Product(name, price, size));
+        int size = parseInt(ui.readLine());
+        companyData.add(new AvailableProduct(name, price, size));
     }
 
     private void deleteProductMenu() {
         ui.print("Введите имя продукта:");
-        String name = ui.readLine();
-        companyData.remove(availableProducts.get(name));
+        companyData.remove(getObjectByInput(availableProducts));
     }
 
 }

@@ -1,6 +1,6 @@
-package app.main.profile;
+package app.main.model.profile;
 
-import app.main.storage.Printable;
+import app.main.model.storage.Printable;
 
  
 

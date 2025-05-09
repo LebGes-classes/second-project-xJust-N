@@ -1,36 +1,35 @@
-package app.main.storage;
+package app.main.model.storage;
 
-import app.main.products.Product;
-import app.main.profile.Employee;
+import app.main.model.products.Product;
+import app.main.model.profile.Employee;
 
  
 import java.util.*;
 
 public class Storage implements Printable, Workable {
+    private final static int CELLS_COUNT = 10;
+    private final static int CELL_CAPACITY = 10000;
+
     private final List<StorageCell> storageCells;
     private final Map<String, Employee> employees;
     private int size;
     private final int capacity;
     private String name;
 
-    Storage(String name, int capacity) {
+    public Storage(String name) {
         this.name = name;
         storageCells = new LinkedList<>();
-        for(int i = 0; i < capacity; i++){
-            storageCells.add(new StorageCell());
+        for(int i = 0; i < CELLS_COUNT; i++){
+            storageCells.add(new StorageCell(CELL_CAPACITY));
         }
         employees = new HashMap<>();
         size = 0;
-        this.capacity = capacity;
-    }
-
-    public Storage(String name) {
-        this(name, 10);
+        capacity = CELLS_COUNT * CELL_CAPACITY;
     }
 
     private StorageCell findValidCell(int neededSize) {
         for (StorageCell cell : storageCells) {
-            if (neededSize <= cell.getSize()) {
+            if (neededSize <= cell.getCapacity()) {
                 return cell;
             }
         }

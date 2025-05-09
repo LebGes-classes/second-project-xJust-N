@@ -1,7 +1,8 @@
 package app.main.handlers;
 
-import app.main.storage.Printable;
-import app.main.products.Product;
+import app.main.model.products.AvailableProduct;
+import app.main.model.storage.Printable;
+import app.main.model.products.Product;
 import app.main.repository.CompanyData;
 import app.main.ui.UI;
 
@@ -39,20 +40,24 @@ public abstract class InputHandler {
                 in = ui.readLine();
                 ui.print(map.get(in).getInfo());
                 }
-        ui.readLine();
+        ui.waitForInput();
     }
 
+    protected <T> T getObjectByInput(Map<String, T> map) throws NoSuchElementException{
+         String name = ui.readLine();
+         if(!map.containsKey(name)) throw new NoSuchElementException(name + " не найден");
+         return map.get(name);
+    }
 
-
-    protected List<Product> getListOfProductsByName() {
+    protected List<Product> getListOfProductsByInput() throws NoSuchElementException, IllegalArgumentException {
         List<Product> listOfProducts = new LinkedList<>();
         boolean flagToContinue = true;
 
         while (flagToContinue) {
             ui.print(
                     "Введите имя товара и его количество(0 для остановки)\n" +
-                    "Формат ввода: <Имя> <Количество>\n" +
-                    "Текущий список:\n");
+                            "Формат ввода: <Имя> <Количество>\n" +
+                            "Текущий список:\n");
             ui.printAllInfo(listOfProducts);
 
             String input = ui.readLine();
@@ -61,25 +66,30 @@ public abstract class InputHandler {
                 continue;
             }
 
-            try {
-                String[] splitInput = input.split(" ");
-                if (splitInput.length != 2) {
-                    throw new IllegalArgumentException("Неверный формат ввода");
-                }
-                String name = splitInput[0];
-                int count = Integer.parseInt(splitInput[1]);
-                Product availableProduct = companyData.getProducts().get(name);
-                if (availableProduct == null) {
-                    throw new NoSuchElementException("Такого продукта c именем " + name + " нет");
-                }
-                listOfProducts.add(availableProduct.copyAndSetCount(count));
-
-            } catch (Exception e) {
-                ui.printErrorMessage(e.getMessage());
+            String[] splitInput = input.split(" ");
+            if (splitInput.length < 2) {
+                throw new IllegalArgumentException("Неверный формат ввода");
             }
+            String name = "";
+            for(int i = 0; i < splitInput.length - 1; i++){
+                name += splitInput[i] + " ";
+            }
+            int count = parseInt(splitInput[splitInput.length - 1]);
+            AvailableProduct availableProduct = companyData.getProducts().get(name.trim());
+            if (availableProduct == null) {
+                throw new NoSuchElementException("Такого продукта c именем " + name + " нет");
+            }
+            listOfProducts.add(new Product(availableProduct, count));
         }
         return listOfProducts;
     }
+
+
+    protected int parseInt(String number){
+        if(!number.matches("^[1-9]\\d*$")) throw new IllegalArgumentException("Неверный формат ввода числа");
+        return Integer.parseInt(number);
+    }
+
     
     public InputHandler getNextHandler() {
         return nextHandler;

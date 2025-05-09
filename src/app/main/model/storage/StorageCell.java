@@ -1,6 +1,6 @@
-package app.main.storage;
+package app.main.model.storage;
 
-import app.main.products.Product;
+import app.main.model.products.Product;
 
  
 import java.util.HashMap;
@@ -17,10 +17,6 @@ class StorageCell{
         this.capacity = capacity;
     }
 
-    StorageCell() {
-        this(1000);
-    }
-
 
     public void add(Product product, int count) {
         String name = product.getName();
@@ -28,13 +24,13 @@ class StorageCell{
         if (size + product.getSizeValue() * count <= capacity) {
             if (products.containsKey(name)) {         // если содержит такой продукт = ссылка на него
                 product = products.get(name);
+                product.addCount(count);
             } else {                                   // иначе - помещаем в ячейку
                 products.put(name, product);
             }
-            product.addCount(count);
             size += product.getSizeValue() * count;
         } else {
-            throw new IllegalStateException("Не хватает места");
+            throw new IllegalStateException("Не хватает места в ячейке");
         }
     }
 

@@ -5,6 +5,8 @@ import app.main.handlers.MainMenuInputHandler;
 import app.main.repository.CompanyData;
 import app.main.ui.UI;
 
+import java.util.NoSuchElementException;
+
 public class CompanyApp {
     private final CompanyData companyData;
     private InputHandler currentHandler;
@@ -37,14 +39,20 @@ public class CompanyApp {
                     isRunning = false;
                     exit();
                     break;
-                case("save"):
-                    companyData.save();
-                    break;
                 default:
-                    currentHandler.handle(command);
+                    try {
+                        currentHandler.handle(command);
+                    } catch (NoSuchElementException e) {
+                        ui.printErrorMessage("Ошибка нахождения элемента!: " + e.getMessage());
+                    } catch (IllegalArgumentException e) {
+                        ui.printErrorMessage("Ошибка формата ввода!: " + e.getMessage());
+                    } catch (Exception e) {
+                        ui.printErrorMessage("Непредвиденная ошибка!: " + e.getMessage());
+                    }
                     break;
             }
             currentHandler = currentHandler.getNextHandler();
+            companyData.save();
         }
         
     }

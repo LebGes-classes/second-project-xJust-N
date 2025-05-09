@@ -1,6 +1,6 @@
 package app.main.handlers;
 
-import app.main.profile.Employee;
+import app.main.model.profile.Employee;
 
 import java.util.Map;
 
@@ -37,8 +37,7 @@ public class EmployeeInputHandler extends InputHandler {
     }
     private void setPositionOnWorkMenu(){
         ui.print("Введите имя сотрудника");
-        String name = ui.readLine();
-        Employee e = employees.get(name);
+        Employee e = getObjectByInput(employees);
         ui.print("Введите должность");
         String pos = ui.readLine();
         e.setPositionOnWork(pos);
@@ -47,16 +46,15 @@ public class EmployeeInputHandler extends InputHandler {
         ui.print("Введите имя сотрудника");
         String name = ui.readLine();
         ui.print("Введите возраст");
-        int age = Integer.parseInt(ui.readLine());
+        int age = parseInt(ui.readLine());
         ui.print("Введите пол(м/ж)");
         String in = ui.readLine();
         companyData.add(new Employee(name, age, in.equals("м")));
     }
     private void deleteEmployeeMenu(){
         ui.print("Введите имя сотрудника");
-        String name = ui.readLine();
-        Employee e = employees.get(name);
+        Employee e = getObjectByInput(employees);
         e.getWork().remove(e);
-        companyData.remove(employees.get(name));
+        companyData.remove(e);
     }
 }
