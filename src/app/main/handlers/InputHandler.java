@@ -37,8 +37,7 @@ public abstract class InputHandler {
                 ui.printAllInfo(map.values()); break;
             case("2"):
                 ui.print("Введите имя");
-                in = ui.readLine();
-                ui.print(map.get(in).getInfo());
+                ui.print(getObjectByInput(map).getInfo());
                 }
         ui.waitForInput();
     }

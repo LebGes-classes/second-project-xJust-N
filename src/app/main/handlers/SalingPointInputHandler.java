@@ -89,7 +89,11 @@ class SalingPointInputHandler extends InputHandler{
         ui.print("Введите имя пункта");
         SalingPoint sp = getObjectByInput(salingPoints);
         ui.print("Введите имя работника");
-        sp.add(getObjectByInput(employees));
+        Employee e = getObjectByInput(employees);
+        ui.print("Введите должность");
+        e.setPositionOnWork(ui.readLine());
+
+        sp.add(e);
     }
 
     private void removeEmployeeMenu(){

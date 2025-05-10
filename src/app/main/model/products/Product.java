@@ -2,6 +2,8 @@ package app.main.model.products;
 
 import app.main.model.storage.Printable;
 
+import java.util.List;
+
 public class Product extends AvailableProduct implements Printable {
     private int count;
 
@@ -34,11 +36,18 @@ public class Product extends AvailableProduct implements Printable {
     public Product copyAndSetCount(int count){
         return new Product(getName(), getPrice(), getSizeValue(), count);
     }
+    public static int getListOfProductsSize(List<Product> list){
+        int currentSize = 0;
+        for(Product pr : list){
+            currentSize += pr.getCount() * pr.getSizeValue();
+        }
+        return currentSize;
+    }
 
     @Override
     public String getInfo(){
         return super.getInfo() + "\n" +
-                "|Количество товара: " + count + "\t";
+                "|Количество товара: " + count + "\t\n";
     }
 
 }

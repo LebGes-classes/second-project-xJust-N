@@ -1,6 +1,7 @@
 package app.main.handlers;
 
 import app.main.model.profile.Employee;
+import app.main.model.storage.Workable;
 
 import java.util.Map;
 
@@ -54,7 +55,7 @@ public class EmployeeInputHandler extends InputHandler {
     private void deleteEmployeeMenu(){
         ui.print("Введите имя сотрудника");
         Employee e = getObjectByInput(employees);
-        e.getWork().remove(e);
+        e.removeWork();
         companyData.remove(e);
     }
 }

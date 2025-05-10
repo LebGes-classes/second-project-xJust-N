@@ -35,7 +35,13 @@ public class SalingPoint implements Printable, Workable {
     @Override
     public void add(Employee employee) {
         employees.put(employee.getName(), employee);
-        employee.setWork(this);
+        employee.setWorkName(name);
+    }
+
+    public void add(List<Product> listOfProducts) {
+        for(Product pr : listOfProducts){
+            this.listOfProducts.put(pr.getName(), pr);
+        }
     }
 
     private void remove(Product pr, int count){
@@ -44,10 +50,14 @@ public class SalingPoint implements Printable, Workable {
 
         if (pointProduct.getCount() == count) {
             listOfProducts.remove(name);
-        } else if (pointProduct.getCount() >= count) {
-            pointProduct.addCount(-count);
         } else {
-            throw new IllegalStateException("Такого количества продукта в ячейке склада нет");
+            pointProduct.addCount(-count);
+        }
+    }
+
+    private void remove(List<Product> listOfProducts) {
+        for(Product pr : listOfProducts){
+            remove(pr, pr.getCount());
         }
     }
 
@@ -59,18 +69,35 @@ public class SalingPoint implements Printable, Workable {
     }
 
     public void returnToStorage(Storage storage, List<Product> listOfProducts){
-        for(Product pr : listOfProducts) {
-            remove(pr, pr.getCount());
-            storage.add(pr, pr.getCount());
-        }
+        if(!(storage.canAdd(listOfProducts) && canRemove(listOfProducts)))
+            throw new IllegalStateException("Невозможно переместить товары");
+
+        remove(listOfProducts);
+        storage.add(listOfProducts);
     }
 
+
+
     public void sellToCustomer(Customer customer, List<Product> listOfProducts){
+        if(!canRemove(listOfProducts))
+            throw new IllegalStateException("Невозможно удалить товары, так как " + name + " не содержит их в нужном количестве");
+
         for(Product pr : listOfProducts){
             remove(pr, pr.getCount());
             customer.add(pr, pr.getCount());
             yield += pr.getPrice() * pr.getCount();
         }
+    }
+
+    boolean canAdd(List<Product> products){
+        return true;
+    }
+    boolean canRemove(List<Product> products){
+        for(Product pr : products){
+            if(!(listOfProducts.containsKey(pr.getName()) && listOfProducts.get(pr.getName()).getCount() >= pr.getCount()))
+                return false;
+        }
+        return true;
     }
 
     public Map<String, Product> getProducts() {

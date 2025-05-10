@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 public class CompanyApp {
     private final CompanyData companyData;
     private InputHandler currentHandler;
-    private UI ui;
+    private final UI ui;
     private boolean isRunning;
 
 
@@ -46,6 +46,8 @@ public class CompanyApp {
                         ui.printErrorMessage("Ошибка нахождения элемента!: " + e.getMessage());
                     } catch (IllegalArgumentException e) {
                         ui.printErrorMessage("Ошибка формата ввода!: " + e.getMessage());
+                    } catch (IllegalStateException e) {
+                        ui.printErrorMessage("Невозможно добавить/переместить товары!: " + e.getMessage());
                     } catch (Exception e) {
                         ui.printErrorMessage("Непредвиденная ошибка!: " + e.getMessage());
                     }

@@ -35,12 +35,20 @@ public class CompanyData{
 
     public void save() {
         JsonDataHandler dataHandler = new JsonDataHandler();
-        dataHandler.saveToJson(instance);
+        try {
+            dataHandler.saveToJson(instance);
+        } catch (Exception e) {
+            throw new RuntimeException("Невозможно сохранить файл!: " + e.getMessage());
+        }
     }
 
     public void load() {
         JsonDataHandler dataHandler = new JsonDataHandler();
-        instance = dataHandler.loadFromJson(CompanyData.class);
+        try {
+            instance = dataHandler.loadFromJson(CompanyData.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Невозможно загрузить файл!: " + e.getMessage());
+        }
     }
 
 

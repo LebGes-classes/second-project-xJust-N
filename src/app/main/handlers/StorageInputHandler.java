@@ -61,7 +61,6 @@ class StorageInputHandler extends InputHandler{
         Storage st1 = getObjectByInput(storages);
         ui.print("Введите имя склада получателя");
         Storage st2 = getObjectByInput(storages);
-
         List<Product> listOfProducts = getListOfProductsByInput();
         st1.move(st2, listOfProducts);
     }
@@ -96,7 +95,11 @@ class StorageInputHandler extends InputHandler{
         ui.print("Введите имя склада");
         Storage storage = getObjectByInput(storages);
         ui.print("Введите имя работника");
-        storage.add(getObjectByInput(employees));
+        Employee e = getObjectByInput(employees);
+        ui.print("Введите должность");
+        e.setPositionOnWork(ui.readLine());
+
+        storage.add(e);
     }
 
     private void removeEmployeeOnStorageMenu(){

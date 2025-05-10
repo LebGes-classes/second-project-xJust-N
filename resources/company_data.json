@@ -21,14 +21,39 @@
               "name": "electric guitar",
               "price": 50000,
               "sizeValue": 50
+            },
+            "car wheel": {
+              "count": 43,
+              "name": "car wheel",
+              "price": 10000,
+              "sizeValue": 50
+            },
+            "energy drink": {
+              "count": 32,
+              "name": "energy drink",
+              "price": 100,
+              "sizeValue": 3
+            },
+            "car": {
+              "count": 1,
+              "name": "car",
+              "price": 5000000,
+              "sizeValue": 1000
             }
           },
-          "size": 200,
+          "size": 3446,
           "capacity": 10000
         },
         {
-          "products": {},
-          "size": 0,
+          "products": {
+            "lada granta 2005": {
+              "count": 1,
+              "name": "lada granta 2005",
+              "price": 500000,
+              "sizeValue": 10000
+            }
+          },
+          "size": 10000,
           "capacity": 10000
         },
         {
@@ -72,8 +97,22 @@
           "capacity": 10000
         }
       ],
-      "employees": {},
-      "size": 3200,
+      "employees": {
+        "mark": {
+          "workName": "wb storage",
+          "name": "mark",
+          "age": 20,
+          "sex": true
+        },
+        "john": {
+          "workName": "wb storage",
+          "positionOnWork": "manager",
+          "name": "john",
+          "age": 34,
+          "sex": true
+        }
+      },
+      "size": 16446,
       "capacity": 100000,
       "name": "wb storage"
     }
@@ -219,19 +258,22 @@
       "price": 50,
       "sizeValue": 5
     },
-    "cream pie": {
-      "name": "cream pie",
-      "price": 34700,
-      "sizeValue": 20
+    "lada granta 2005": {
+      "name": "lada granta 2005",
+      "price": 500000,
+      "sizeValue": 10000
     }
   },
   "employees": {
     "mark": {
+      "workName": "wb storage",
       "name": "mark",
       "age": 20,
       "sex": true
     },
     "john": {
+      "workName": "wb storage",
+      "positionOnWork": "manager",
       "name": "john",
       "age": 34,
       "sex": true

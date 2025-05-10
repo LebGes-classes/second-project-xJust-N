@@ -29,7 +29,7 @@ public class Storage implements Printable, Workable {
 
     private StorageCell findValidCell(int neededSize) {
         for (StorageCell cell : storageCells) {
-            if (neededSize <= cell.getCapacity()) {
+            if (neededSize <= cell.getCapacity() - cell.getSize()) {
                 return cell;
             }
         }
@@ -38,13 +38,12 @@ public class Storage implements Printable, Workable {
 
     public void add(Product product, int count) {
         int size = product.getSizeValue() * count;
-
         StorageCell cell = findValidCell(size);
         cell.add(product, count);
         this.size += size;
     }
 
-    public void add(List<Product> products) throws IllegalArgumentException {
+    public void add(List<Product> products) {
         for (Product product : products) {
             add(product, product.getCount());
         }
@@ -53,13 +52,19 @@ public class Storage implements Printable, Workable {
     @Override
     public void add(Employee employee) {
         employees.put(employee.getName(), employee);
-        employee.setWork(this);
+        employee.setWorkName(name);
     }
 
 
     public void remove(Product product, int count) {
         StorageCell cell = findCellContainsProduct(product);
         cell.remove(product, count);
+    }
+
+    public void remove(List<Product> listOfProducts){
+        for(Product pr : listOfProducts){
+            remove(pr, pr.getCount());
+        }
     }
 
     @Override
@@ -70,17 +75,19 @@ public class Storage implements Printable, Workable {
     }
 
     public void move(Storage storage, List<Product> listOfProducts) {
-        for (Product product : listOfProducts) {
-            remove(product, product.getCount());
-            storage.add(product, product.getCount());
-        }
+        if(!(storage.canAdd(listOfProducts) && canRemove(listOfProducts)))
+            throw new IllegalStateException("Невозможно переместить товары");
+
+        remove(listOfProducts);
+        storage.add(listOfProducts);
 
     }
     public void move(SalingPoint salingPoint, List<Product> listOfProducts) {
-        for (Product product : listOfProducts) {
-            remove(product, product.getCount());
-            salingPoint.add(product, product.getCount());
-        }
+        if(!(salingPoint.canAdd(listOfProducts) && canRemove(listOfProducts)))
+            throw new IllegalStateException("Невозможно переместить товары");
+
+        remove(listOfProducts);
+        salingPoint.add(listOfProducts);
 
     }
 
@@ -92,8 +99,20 @@ public class Storage implements Printable, Workable {
                 return cell;
             }
         }
-        throw new IllegalStateException("Склад не содержит продукт в нужном количестве");
+        return null;
     }
+
+    boolean canAdd(List<Product> products){
+        return size + Product.getListOfProductsSize(products) <= capacity;
+    }
+    boolean canRemove(List<Product> products){
+        for(Product pr : products){
+            if(findCellContainsProduct(pr) == null)
+                return false;
+        }
+        return true;
+    }
+
 
     @Override
     public String getName() {
@@ -108,17 +127,17 @@ public class Storage implements Printable, Workable {
     public String getInfo() {
         String info =
                 "Название: " + name + "\n" +
-                "Заполненность: " + size + "/" + capacity + "\n" +
+                "Заполненность: " + size + "/" + capacity + "\n\n" +
                 "Ответственные лица: " + "\n";
 
         for(Employee e : employees.values()){
             info += e.getInfo();
         }
 
-        info += "Товары: " + "\n";
+        info += "\n" + "Товары: " + "\n";
         for(StorageCell cell : storageCells){
             for(Product p : cell.getProducts().values()){
-                info += p.getInfo();
+                info += p.getInfo() + " ";
             }
         }
         return info;
