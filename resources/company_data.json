@@ -5,7 +5,7 @@
         {
           "products": {
             "elephant": {
-              "count": 3,
+              "count": 2,
               "name": "elephant",
               "price": 1000000,
               "sizeValue": 1000
@@ -17,7 +17,7 @@
               "sizeValue": 5
             },
             "electric guitar": {
-              "count": 3,
+              "count": 1,
               "name": "electric guitar",
               "price": 50000,
               "sizeValue": 50
@@ -29,7 +29,7 @@
               "sizeValue": 50
             },
             "energy drink": {
-              "count": 32,
+              "count": 28,
               "name": "energy drink",
               "price": 100,
               "sizeValue": 3
@@ -41,7 +41,7 @@
               "sizeValue": 1000
             }
           },
-          "size": 3446,
+          "size": 2334,
           "capacity": 10000
         },
         {
@@ -112,7 +112,7 @@
           "sex": true
         }
       },
-      "size": 16446,
+      "size": 15446,
       "capacity": 100000,
       "name": "wb storage"
     }
@@ -122,10 +122,22 @@
       "name": "wb sp",
       "listOfProducts": {
         "elephant": {
-          "count": 3,
+          "count": 1,
           "name": "elephant",
           "price": 1000000,
           "sizeValue": 1000
+        },
+        "energy drink": {
+          "count": 4,
+          "name": "energy drink",
+          "price": 100,
+          "sizeValue": 3
+        },
+        "electric guitar": {
+          "count": 2,
+          "name": "electric guitar",
+          "price": 50000,
+          "sizeValue": 50
         }
       },
       "employees": {},

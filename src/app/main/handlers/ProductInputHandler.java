@@ -2,6 +2,7 @@ package app.main.handlers;
 
 import app.main.model.products.AvailableProduct;
 
+import java.io.IOException;
 import java.util.Map;
 
 public class ProductInputHandler extends InputHandler {
@@ -25,7 +26,7 @@ public class ProductInputHandler extends InputHandler {
     }
 
     @Override
-    public void handle(String command){
+    public void handle(String command) throws IOException {
         switch(command){
             case("1"): infoMenu(availableProducts); break;
             case("2"): registerProductMenu(); break;
@@ -34,9 +35,12 @@ public class ProductInputHandler extends InputHandler {
         }
     }
 
-    private void registerProductMenu() {
+    private void registerProductMenu() throws IOException {
         ui.print("Введите имя продукта:");
         String name = ui.readLine();
+        if(availableProducts.containsKey(name))
+            throw new IOException(name + " уже существует");
+
         ui.print("Введите цену за 1 шт:");
         int price = parseInt(ui.readLine());
         ui.print("Введите значение размера:");

@@ -1,9 +1,8 @@
 package app.main.handlers;
 
-import app.main.model.products.AvailableProduct;
 import app.main.model.profile.Customer;
-import app.main.model.profile.Employee;
 
+import java.io.IOException;
 import java.util.Map;
 
 public class CustomerInputHandler extends InputHandler {
@@ -26,7 +25,7 @@ public class CustomerInputHandler extends InputHandler {
     }
 
     @Override
-    public void handle(String command){
+    public void handle(String command) throws IOException {
         switch(command){
             case("1"): infoMenu(customers); break;
             case("2"): registerCustomerMenu(); break;
@@ -34,9 +33,12 @@ public class CustomerInputHandler extends InputHandler {
             default: ui.printErrorMessage("Неверная команда");
         }
     }
-    private void registerCustomerMenu() {
+    private void registerCustomerMenu() throws IOException {
         ui.print("Введите имя покупателя");
         String name = ui.readLine();
+        if(customers.containsKey(name))
+            throw new IOException(name + " уже существует");
+
         ui.print("Введите возраст");
         int age = parseInt(ui.readLine());
         ui.print("Введите пол(м/ж)");

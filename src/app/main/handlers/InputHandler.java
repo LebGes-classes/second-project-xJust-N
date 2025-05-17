@@ -6,10 +6,11 @@ import app.main.model.products.Product;
 import app.main.repository.CompanyData;
 import app.main.ui.UI;
 
+import java.io.IOException;
 import java.util.*;
 
-public abstract class InputHandler {
-    private InputHandler nextHandler;
+public abstract class InputHandler {    //Супертип для всех обработчиков ввода для полиморфизма
+    private InputHandler nextHandler;   //Экземпляр класса, которое наследники изменяют динамически
     protected final CompanyData companyData;
     protected final UI ui;
 
@@ -20,8 +21,8 @@ public abstract class InputHandler {
         ui = new UI();
     }
 
-    public abstract void printMenu();
-    public abstract void handle(String command);
+    public abstract void printMenu();   //Абстрактные методы для потомков
+    public abstract void handle(String command) throws IOException;
 
      protected void infoMenu(Map<String, ? extends Printable> map){
         ui.print(

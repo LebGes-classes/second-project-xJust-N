@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
-public class JsonDataHandler {
+public class JsonDataHandler {  //Generic json объектный сериализатор и десериализатор
     private final String FILE_NAME = "resources/company_data.json";
     private final Gson gson;
     private final File file;

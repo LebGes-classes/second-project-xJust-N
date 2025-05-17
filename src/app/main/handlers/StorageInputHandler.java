@@ -5,6 +5,7 @@ import app.main.model.profile.Employee;
 import app.main.model.storage.SalingPoint;
 import app.main.model.storage.Storage;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +42,7 @@ class StorageInputHandler extends InputHandler{
     }
 
     @Override
-    public void handle(String command) {
+    public void handle(String command) throws IOException {
         switch(command){
             case("1"): infoMenu(storages); break;
             case("2"): moveProductsOnStorageMenu(); break;
@@ -74,9 +75,11 @@ class StorageInputHandler extends InputHandler{
         storage.move(salingPoint, listOfProducts);
     }
 
-    private void newStorageMenu(){
+    private void newStorageMenu() throws IOException {
         ui.print("Введите имя склада");
         String name = ui.readLine();
+        if(storages.containsKey(name))
+            throw new IOException(name + " уже существует");
         companyData.add(new Storage(name));
     }
     

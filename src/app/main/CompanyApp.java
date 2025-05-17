@@ -5,6 +5,7 @@ import app.main.handlers.MainMenuInputHandler;
 import app.main.repository.CompanyData;
 import app.main.ui.UI;
 
+import java.io.IOException;
 import java.util.NoSuchElementException;
 
 public class CompanyApp {
@@ -43,13 +44,15 @@ public class CompanyApp {
                     try {
                         currentHandler.handle(command);
                     } catch (NoSuchElementException e) {
-                        ui.printErrorMessage("Ошибка нахождения элемента!: " + e.getMessage());
+                        ui.printErrorMessage("Ошибка нахождения элемента!:\n" + e.getMessage());
                     } catch (IllegalArgumentException e) {
-                        ui.printErrorMessage("Ошибка формата ввода!: " + e.getMessage());
+                        ui.printErrorMessage("Ошибка формата ввода!:\n" + e.getMessage());
+                    } catch (IOException e){
+                        ui.printErrorMessage("Ошибка ввода:\n" + e);
                     } catch (IllegalStateException e) {
-                        ui.printErrorMessage("Невозможно добавить/переместить товары!: " + e.getMessage());
+                        ui.printErrorMessage("Невозможно добавить/переместить товары!:\n" + e.getMessage());
                     } catch (Exception e) {
-                        ui.printErrorMessage("Непредвиденная ошибка!: " + e.getMessage());
+                        throw new RuntimeException("Непредвиденная ошибка!:\n" + e.getMessage());
                     }
                     break;
             }

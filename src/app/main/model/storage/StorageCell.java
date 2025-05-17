@@ -22,7 +22,7 @@ class StorageCell{
         String name = product.getName();
 
         if (size + product.getSizeValue() * count <= capacity) {
-            if (products.containsKey(name)) {         // если содержит такой продукт = ссылка на него
+            if (products.containsKey(name)) {         // если содержит такой продукт, то добавляем ему количество
                 product = products.get(name);
                 product.addCount(count);
             } else {                                   // иначе - помещаем в ячейку

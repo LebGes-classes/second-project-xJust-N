@@ -3,6 +3,7 @@ package app.main.handlers;
 import app.main.model.profile.Employee;
 import app.main.model.storage.Workable;
 
+import java.io.IOException;
 import java.util.Map;
 
 public class EmployeeInputHandler extends InputHandler {
@@ -27,7 +28,7 @@ public class EmployeeInputHandler extends InputHandler {
     }
 
     @Override
-    public void handle(String command) {
+    public void handle(String command) throws IOException {
         switch(command){
             case("1"): infoMenu(employees); break;
             case("2"): setPositionOnWorkMenu(); break;
@@ -43,9 +44,12 @@ public class EmployeeInputHandler extends InputHandler {
         String pos = ui.readLine();
         e.setPositionOnWork(pos);
     }
-    private void registerEmployeeMenu(){
+    private void registerEmployeeMenu() throws IOException {
         ui.print("Введите имя сотрудника");
         String name = ui.readLine();
+        if(employees.containsKey(name))
+            throw new IOException(name + " уже существует");
+
         ui.print("Введите возраст");
         int age = parseInt(ui.readLine());
         ui.print("Введите пол(м/ж)");

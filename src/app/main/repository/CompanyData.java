@@ -9,7 +9,7 @@ import app.main.model.storage.Storage;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CompanyData{
+public class CompanyData{       //Класс - хранитель данных с маппингом объектов
     private static CompanyData instance;
     private final Map<String, Storage> storages;
     private final Map<String, SalingPoint> salingPoints;

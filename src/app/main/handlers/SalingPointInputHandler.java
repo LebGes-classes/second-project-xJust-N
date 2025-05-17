@@ -5,6 +5,7 @@ import app.main.model.profile.Customer;
 import app.main.model.profile.Employee;
 import app.main.model.storage.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +41,7 @@ class SalingPointInputHandler extends InputHandler{
     }
 
     @Override
-    public void handle(String command){
+    public void handle(String command) throws IOException {
         switch(command){
             case("1"): infoMenu(salingPoints); break;
             case("2"): sellToCustomerMenu(); break;
@@ -74,9 +75,11 @@ class SalingPointInputHandler extends InputHandler{
         List<Product> listOfProducts = getListOfProductsByInput();
         sp.returnToStorage(storage, listOfProducts);
     }
-    private void newSalingPointMenu(){
+    private void newSalingPointMenu() throws IOException {
         ui.print("Введите имя пункта");
         String name = ui.readLine();
+        if(salingPoints.containsKey(name))
+            throw new IOException(name + " уже существует");
         companyData.add(new SalingPoint(name));
     }
 

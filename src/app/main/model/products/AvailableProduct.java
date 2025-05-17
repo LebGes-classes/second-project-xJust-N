@@ -2,7 +2,7 @@ package app.main.model.products;
 
 import app.main.model.storage.Printable;
 
-public class AvailableProduct implements Printable {
+public class AvailableProduct implements Printable {    //Супертип для Product
     private String name;
     private int price;
     private int sizeValue;
