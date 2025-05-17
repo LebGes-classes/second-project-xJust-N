@@ -1,6 +1,6 @@
-package app.main.model.storage;
+package com.app.model.storage;
 
-import app.main.model.products.Product;
+import com.app.model.products.Product;
 
  
 import java.util.HashMap;

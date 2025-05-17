@@ -1,4 +1,4 @@
-package app.main.handlers;
+package com.app.handlers;
 
 public class MainMenuInputHandler extends InputHandler{
 

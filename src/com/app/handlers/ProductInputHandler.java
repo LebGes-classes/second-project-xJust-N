@@ -1,6 +1,6 @@
-package app.main.handlers;
+package com.app.handlers;
 
-import app.main.model.products.AvailableProduct;
+import com.app.model.products.AvailableProduct;
 
 import java.io.IOException;
 import java.util.Map;

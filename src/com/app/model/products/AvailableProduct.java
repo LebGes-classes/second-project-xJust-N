@@ -1,6 +1,6 @@
-package app.main.model.products;
+package com.app.model.products;
 
-import app.main.model.storage.Printable;
+import com.app.model.storage.Printable;
 
 public class AvailableProduct implements Printable {    //Супертип для Product
     private String name;

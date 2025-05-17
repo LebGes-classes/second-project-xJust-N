@@ -1,6 +1,6 @@
-package app.main.handlers;
+package com.app.handlers;
 
-import app.main.model.profile.Customer;
+import com.app.model.profile.Customer;
 
 import java.io.IOException;
 import java.util.Map;

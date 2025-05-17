@@ -1,6 +1,6 @@
-package app.main.model.products;
+package com.app.model.products;
 
-import app.main.model.storage.Printable;
+import com.app.model.storage.Printable;
 
 import java.util.List;
 

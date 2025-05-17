@@ -1,7 +1,7 @@
-package app.main.model.profile;
+package com.app.model.profile;
 
-import app.main.model.storage.Printable;
-import app.main.model.products.Product;
+import com.app.model.storage.Printable;
+import com.app.model.products.Product;
 
  
 import java.util.HashMap;

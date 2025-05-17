@@ -1,9 +1,7 @@
-package app.main.model.profile;
+package com.app.model.profile;
 
-import app.main.model.storage.Printable;
-import app.main.model.storage.Workable;
+import com.app.model.storage.Printable;
 
- 
 
 public class Employee extends Profile implements Printable {
     private String workName;

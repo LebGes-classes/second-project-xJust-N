@@ -1,7 +1,6 @@
-package app.main.handlers;
+package com.app.handlers;
 
-import app.main.model.profile.Employee;
-import app.main.model.storage.Workable;
+import com.app.model.profile.Employee;
 
 import java.io.IOException;
 import java.util.Map;

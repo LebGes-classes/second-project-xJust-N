@@ -1,6 +1,6 @@
-package app.main.model.storage;
+package com.app.model.storage;
 
-import app.main.model.profile.Employee;
+import com.app.model.profile.Employee;
 
 public interface Workable {     //Интерфейс для обозначения места как возможное место работы
     void add(Employee e);

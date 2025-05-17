@@ -1,7 +1,7 @@
-package app.main.ui;
+package com.app.ui;
 
-import app.main.handlers.InputHandler;
-import app.main.model.storage.Printable;
+import com.app.handlers.InputHandler;
+import com.app.model.storage.Printable;
 
 import java.util.Collection;
 import java.util.Scanner;

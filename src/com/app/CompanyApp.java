@@ -1,9 +1,9 @@
-package app.main;
+package com.app;
 
-import app.main.handlers.InputHandler;
-import app.main.handlers.MainMenuInputHandler;
-import app.main.repository.CompanyData;
-import app.main.ui.UI;
+import com.app.handlers.InputHandler;
+import com.app.handlers.MainMenuInputHandler;
+import com.app.repository.CompanyData;
+import com.app.ui.UI;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;

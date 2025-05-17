@@ -1,4 +1,4 @@
-package app.main.repository;
+package com.app.repository;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

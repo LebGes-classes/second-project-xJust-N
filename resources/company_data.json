@@ -23,7 +23,7 @@
               "sizeValue": 50
             },
             "car wheel": {
-              "count": 43,
+              "count": 40,
               "name": "car wheel",
               "price": 10000,
               "sizeValue": 50
@@ -41,7 +41,7 @@
               "sizeValue": 1000
             }
           },
-          "size": 2334,
+          "size": 2184,
           "capacity": 10000
         },
         {
@@ -112,7 +112,7 @@
           "sex": true
         }
       },
-      "size": 15446,
+      "size": 15296,
       "capacity": 100000,
       "name": "wb storage"
     }
@@ -128,7 +128,7 @@
           "sizeValue": 1000
         },
         "energy drink": {
-          "count": 4,
+          "count": 2,
           "name": "energy drink",
           "price": 100,
           "sizeValue": 3
@@ -138,10 +138,16 @@
           "name": "electric guitar",
           "price": 50000,
           "sizeValue": 50
+        },
+        "car wheel": {
+          "count": 3,
+          "name": "car wheel",
+          "price": 10000,
+          "sizeValue": 50
         }
       },
       "employees": {},
-      "yield": 0
+      "yield": 200
     }
   },
   "availableProducts": {
@@ -300,8 +306,15 @@
       "sex": false
     },
     "dave": {
-      "listOfProducts": {},
-      "numberOfOrders": 0,
+      "listOfProducts": {
+        "energy drink": {
+          "count": 2,
+          "name": "energy drink",
+          "price": 100,
+          "sizeValue": 3
+        }
+      },
+      "numberOfOrders": 1,
       "name": "dave",
       "age": 30,
       "sex": true

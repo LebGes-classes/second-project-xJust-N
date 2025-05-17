@@ -1,10 +1,10 @@
-package app.main.repository;
+package com.app.repository;
 
-import app.main.model.products.AvailableProduct;
-import app.main.model.profile.Customer;
-import app.main.model.profile.Employee;
-import app.main.model.storage.SalingPoint;
-import app.main.model.storage.Storage;
+import com.app.model.products.AvailableProduct;
+import com.app.model.profile.Customer;
+import com.app.model.profile.Employee;
+import com.app.model.storage.SalingPoint;
+import com.app.model.storage.Storage;
 
 import java.util.HashMap;
 import java.util.Map;

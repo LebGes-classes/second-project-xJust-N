@@ -1,10 +1,10 @@
-package app.main.handlers;
+package com.app.handlers;
 
-import app.main.model.products.AvailableProduct;
-import app.main.model.storage.Printable;
-import app.main.model.products.Product;
-import app.main.repository.CompanyData;
-import app.main.ui.UI;
+import com.app.model.products.AvailableProduct;
+import com.app.model.storage.Printable;
+import com.app.model.products.Product;
+import com.app.repository.CompanyData;
+import com.app.ui.UI;
 
 import java.io.IOException;
 import java.util.*;

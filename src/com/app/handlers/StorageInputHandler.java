@@ -1,9 +1,9 @@
-package app.main.handlers;
+package com.app.handlers;
 
-import app.main.model.products.Product;
-import app.main.model.profile.Employee;
-import app.main.model.storage.SalingPoint;
-import app.main.model.storage.Storage;
+import com.app.model.products.Product;
+import com.app.model.profile.Employee;
+import com.app.model.storage.SalingPoint;
+import com.app.model.storage.Storage;
 
 import java.io.IOException;
 import java.util.List;
